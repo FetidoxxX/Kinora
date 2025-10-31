@@ -17,7 +17,23 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".cines_admin"
+            android:name=".Usuario"
+            android:exported="false" />
+        <activity
+            android:name=".Cines"
+            android:exported="false" />
+        <activity
+            android:name=".Peliculas"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".nav_bar"
             android:exported="false" />
         <activity
             android:name=".recuperar_clave"
@@ -30,12 +46,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
     </application>
 
