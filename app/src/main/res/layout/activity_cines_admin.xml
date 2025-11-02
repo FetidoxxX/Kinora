@@ -68,7 +68,7 @@
                 app:tint="@android:color/darker_gray" />
             <!-- Campo de Texto para la búsqueda -->
             <EditText
-                android:id="@+id/et_search"
+                android:id="@+id/et_buscar_cine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -93,19 +93,19 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_cines"
+        android:id="@+id/rv_cines"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btn_crear_cine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_card" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_crear_cine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"

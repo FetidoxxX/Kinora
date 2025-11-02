@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".cines_admin"
+            android:exported="false" />
+        <activity
             android:name=".Usuario"
             android:exported="false" />
         <activity
@@ -24,7 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".Peliculas"
-            android:exported="true">
+            android:exported="false">
 
         </activity>
 
