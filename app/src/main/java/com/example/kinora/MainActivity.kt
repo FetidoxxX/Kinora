@@ -56,33 +56,39 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener { response ->
-                when (response.trim()) {
+                val cleanResponse = response.trim()
+
+                when (cleanResponse) {
                     "ERROR 1" -> {
                         Toast.makeText(this, "Se deben llenar todos los campos", Toast.LENGTH_SHORT).show()
                     }
                     "ERROR 2" -> {
-                        Toast.makeText(this, "No existe el Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show()
-                    }
-                    "ERROR 3" -> {
-                        Toast.makeText(this, "Error en el servidor", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Usuario o contraseña no validos", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
-                        // Login exitoso
-                        Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, cines_admin::class.java)
-                        startActivity(intent)
-                        finish() // Cerrar MainActivity para que no pueda volver atrás
+                        if (cleanResponse.startsWith("[{") && cleanResponse.endsWith("}]")) {
+
+                            Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(this, Home::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Error: Respuesta inválida del servidor", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             },
             Response.ErrorListener { volleyError ->
-                Toast.makeText(this, "ERROR AL CONECTAR CON EL SERVIDOR: ${volleyError.message}", Toast.LENGTH_LONG).show()
+                // Error de red (el teléfono no puede conectarse al servidor web/URL)
+                Toast.makeText(this, "ERROR DE CONEXIÓN: Revise su red o la URL: ${volleyError.message}", Toast.LENGTH_LONG).show()
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
+                //
                 params["usuario"] = edtusuario?.text.toString()
-                params["contraseña"] = edtcontraseña?.text.toString()
+                params["clave"] = edtcontraseña?.text.toString()
                 return params
             }
         }
