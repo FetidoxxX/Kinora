@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private var btniniciar: Button? = null
     private var btncrear: TextView? = null
 
-    private val url: String = "http://10.0.2.2/kinora_PHP/login.php"
+    private val url: String = "http://192.168.0.149/kinora_PHP/login.php"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

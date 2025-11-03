@@ -17,7 +17,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
 
-class cines_admin : AppCompatActivity() {
+class cines_admin : nav_bar() {
 
     private lateinit var recyclerViewCines: RecyclerView
     private lateinit var btnCrearCine: Button
@@ -29,6 +29,7 @@ class cines_admin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_cines_admin)
+        configurarNavBar()  //aqui se importa la funcionalidad de la barra de navegación
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

@@ -9,57 +9,66 @@
 
 
     <ImageView
-        android:id="@+id/Fondo"
-        android:layout_width="351dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="652dp"
-        android:layout_marginEnd="12dp"
+        android:id="@+id/fondo_nav_bar"
+        android:layout_width="411dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="637dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/nav_bar_fondo" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/fondo_nav_bar" />
+
+    <ImageView
+        android:id="@+id/fondo_boton_plus"
+        android:layout_width="307dp"
+        android:layout_height="104dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fondo_nav_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/fondo_boton_plus" />
 
     <ImageButton
         android:id="@+id/btnCines"
-        android:layout_width="37dp"
-        android:layout_height="49dp"
+        android:layout_width="29dp"
+        android:layout_height="39dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/Fondo"
-        app:layout_constraintEnd_toEndOf="@+id/Fondo"
-        app:layout_constraintStart_toStartOf="@+id/Fondo"
-        app:layout_constraintTop_toTopOf="@+id/Fondo"
+        app:layout_constraintBottom_toBottomOf="@+id/fondo_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPlus"
+        app:layout_constraintTop_toTopOf="@+id/fondo_nav_bar"
         app:srcCompat="@drawable/cines" />
 
     <ImageButton
-        android:id="@+id/btnUsuario"
-        android:layout_width="37dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="75dp"
+        android:id="@+id/btnPeliculas"
+        android:layout_width="29dp"
+        android:layout_height="39dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/Fondo"
-        app:layout_constraintEnd_toEndOf="@+id/Fondo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btnCines"
-        app:layout_constraintTop_toTopOf="@+id/Fondo"
-        app:layout_constraintVertical_bias="0.514"
-        app:srcCompat="@drawable/usuario" />
+        app:layout_constraintBottom_toBottomOf="@+id/fondo_nav_bar"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlus"
+        app:layout_constraintStart_toStartOf="@+id/fondo_nav_bar"
+        app:layout_constraintTop_toTopOf="@+id/fondo_nav_bar"
+        app:srcCompat="@drawable/peliculas" />
 
     <ImageButton
-        android:id="@+id/btnPeliculas"
-        android:layout_width="37dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="75dp"
-        android:background="@android:color/transparent"
+        android:id="@+id/btnPlus"
+        android:layout_width="120dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="596dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/Fondo"
-        app:layout_constraintEnd_toStartOf="@+id/btnCines"
-        app:layout_constraintHorizontal_bias="0.982"
-        app:layout_constraintStart_toStartOf="@+id/Fondo"
-        app:layout_constraintTop_toTopOf="@+id/Fondo"
-        app:layout_constraintVertical_bias="0.514"
-        app:srcCompat="@drawable/peliculas" />
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fondo_boton_plus"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/fondo_boton_plus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/boton_plus" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

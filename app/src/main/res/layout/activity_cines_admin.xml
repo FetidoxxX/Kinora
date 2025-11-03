@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".cines_admin"
-    android:background="@drawable/background_gradiente">
+    android:background="@drawable/fondo">
+
 
     <TextView
         android:id="@+id/tv_cines"
@@ -108,7 +109,7 @@
         android:id="@+id/btn_crear_cine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="148dp"
         android:backgroundTint="#6C6C98"
         android:text="Crear"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,5 +117,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <include
+        android:id="@+id/navBarInclude"
+        layout="@layout/nav_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
