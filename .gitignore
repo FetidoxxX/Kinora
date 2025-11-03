@@ -1,0 +1,16 @@
+# Archivos generados por Android Studio / Gradle
+.gradle/
+build/
+.idea/
+local.properties
+
+# Archivos de sistema
+*.iml
+*.log
+.DS_Store
+
+# Carpeta de librerías descargadas por Gradle
+/captures/
+
+# Otros archivos temporales
+*.tmp
