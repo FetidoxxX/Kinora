@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     else -> {
                         // Login exitoso
                         Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, Home::class.java)
+                        val intent = Intent(this, cines_admin::class.java)
                         startActivity(intent)
                         finish() // Cerrar MainActivity para que no pueda volver atrás
                     }
