@@ -114,7 +114,7 @@ class Registrar_usuario : AppCompatActivity() {
         val id_tipo_doc = idTipoSeleccionado
 
 
-        if (documento.isEmpty() || nombre.isEmpty() || email.isEmpty() || usuario.isEmpty() || clave.isEmpty() || clave_conf.isEmpty() || id_tipo_doc == null) {
+        if (documento.isEmpty() || nombre.isEmpty() || email.isEmpty() || usuario.isEmpty() || clave.isEmpty() || clave_conf.isEmpty() || id_tipo_doc == null || id_tipo_doc == 0) {
             Toast.makeText(this, "Por favor, completa todos los campos y selecciona un tipo de documento.", Toast.LENGTH_LONG).show()
             return
         }
@@ -123,6 +123,18 @@ class Registrar_usuario : AppCompatActivity() {
             Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_LONG).show()
             return
         }
+
+        val nuevoUsuario = usuario_class(
+            id_u = 0,
+            documento = documento,
+            id_tipo_doc = id_tipo_doc,
+            rol_id = 3,
+            usuario = usuario,
+            nombre = nombre,
+            email = email,
+            clave = clave,
+            codigo = null
+        )
 
         val stringRequest = object : StringRequest(
             Method.POST, url,
@@ -139,7 +151,7 @@ class Registrar_usuario : AppCompatActivity() {
                         finish()
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Respuesta inválida del servidor: $response", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Respuesta inválida o error en el servidor. Inténtalo de nuevo.", Toast.LENGTH_LONG).show()
                     e.printStackTrace()
                 }
             },
@@ -150,12 +162,12 @@ class Registrar_usuario : AppCompatActivity() {
         ) {
             override fun getParams(): Map<String, String> {
                 val params: MutableMap<String, String> = HashMap()
-                params["documento"] = documento
-                params["nombre"] = nombre
-                params["email"] = email
-                params["usuario"] = usuario
-                params["clave"] = clave // Se envía la clave para que PHP la hashee
-                params["id_tipo_doc"] = id_tipo_doc.toString()
+                params["documento"] = nuevoUsuario.documento
+                params["nombre"] = nuevoUsuario.nombre
+                params["email"] = nuevoUsuario.email
+                params["usuario"] = nuevoUsuario.usuario
+                params["clave"] = nuevoUsuario.clave
+                params["id_tipo_doc"] = nuevoUsuario.id_tipo_doc.toString()
                 return params
             }
         }
