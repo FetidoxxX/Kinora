@@ -13,7 +13,6 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.kinora.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,12 +41,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         btncrear?.setOnClickListener {
-            val intent = Intent(this, Registrar_usuario::class.java)
+            val intent = Intent(this,Registrar_usuario::class.java)
             startActivity(intent)
         }
 
         btnrecuperar?.setOnClickListener {
-            val intent = Intent(this, recuperar_clave::class.java)
+            val intent = Intent(this,recuperar_clave::class.java)
             startActivity(intent)
         }
     }
@@ -86,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                //
                 params["usuario"] = edtusuario?.text.toString()
                 params["clave"] = edtcontraseña?.text.toString()
                 return params
