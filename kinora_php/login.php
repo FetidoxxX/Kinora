@@ -14,7 +14,6 @@ if (empty($user) || empty($pass)) {
   if ($num > 0) {
     while ($row = $res->fetch_assoc()) {
       $data[] = $row;
-      //crear el json 
       echo json_encode($data);
     }
   } else {
