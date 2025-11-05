@@ -18,11 +18,16 @@ $sql = "SELECT
             u.nombre AS nombre_usuario,
             u.email AS email_usuario,
             u.documento AS documento_usuario,
-            c.telefono
+            c.telefono,
+            u.usuario AS usuario,
+            e.id_estado_cine AS id_estado_cine
         FROM 
             cine c
         JOIN 
             usuario u ON c.usuario_id_u = u.id_u
+        JOIN
+            estado_cine e ON c.id_estado_cine = e.id_estado_cine
+
         WHERE 
             c.nombre LIKE '%$nombre_buscado%'";
 

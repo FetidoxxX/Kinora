@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/fondo"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalles del Cine"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textColor="#CFFF"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        android:textStyle="bold"
+        android:textColor="#A2A2A2"/>
+    <TextView
+        android:id="@+id/tv_detalle_nombre_cine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargando nombre..."
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dirección:"
+        android:textStyle="bold"
+        android:textColor="#A2A2A2"/>
+    <TextView
+        android:id="@+id/tv_detalle_direccion_cine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargando dirección..."
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teléfono:"
+        android:textStyle="bold"
+        android:textColor="#A2A2A2"/>
+    <TextView
+        android:id="@+id/tv_detalle_telefono_cine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargando teléfono..."
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#FFF"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datos del Encargado"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:id="@+id/tv_detalle_nombre_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre Usuario"
+        android:textSize="18sp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:id="@+id/tv_detalle_email_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email@usuario.com"
+        android:textSize="18sp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:id="@+id/tv_detalle_documento_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123456789"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp"
+        android:textColor="#FFF"/>
+
+
+    <Button
+        android:id="@+id/btn_detalle_aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        android:layout_gravity="end"/>
+
+</LinearLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/fondo"
+    >
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Cine"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Cine:"
+        android:textStyle="bold"
+        android:textColor="#AFAFAF"/>
+    <EditText
+        android:id="@+id/et_actualizar_nombre_cine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del cine"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dirección:"
+        android:textStyle="bold"
+        android:textColor="#AFAFAF"/>
+    <EditText
+        android:id="@+id/et_actualizar_direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección del cine"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teléfono:"
+        android:textStyle="bold"
+        android:textColor="#AFAFAF"/>
+    <EditText
+        android:id="@+id/et_actualizar_telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número de teléfono"
+        android:inputType="phone"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datos del Encargado"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/white"/>
+
+    <EditText
+        android:id="@+id/et_actualizar_nombre_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del encargado"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"/>
+
+    <EditText
+        android:id="@+id/et_actualizar_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email del encargado"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"/>
+
+    <EditText
+        android:id="@+id/et_actualizar_documento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Documento del encargado"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"/>
+
+    <EditText
+        android:id="@+id/et_actualizar_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Usuario del encargado"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado:"
+        android:textStyle="bold"
+        android:textColor="#AFAFAF"/>
+    <Spinner
+        android:id="@+id/spinner_actualizar_estado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/estados_cine"
+        android:backgroundTint="@android:color/white"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="24dp">
+
+
+
+
+        <Button
+            android:id="@+id/btn_actualizar_guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"/>
+    </LinearLayout>
+
+</LinearLayout>

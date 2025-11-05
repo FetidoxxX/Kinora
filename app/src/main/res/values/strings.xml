@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Kinora</string>
+    <string-array name="estados_cine">
+        <item>Disponible</item>
+        <item>Inhabilitado</item>
+    </string-array>
+    <string-array name="tipos_documento">
+        <item>Cedula de ciudadanía</item>
+        <item>Tarjeta de identidad</item>
+        <item>Cedula de extranjeria</item>
+        <item>Pasaporte</item>
+        <item>NIT</item>
+    </string-array>
 </resources>

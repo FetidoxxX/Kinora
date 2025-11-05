@@ -9,5 +9,8 @@ data class Cine (
     val email: String,
     val documento: String,
     val telefono: String,
+    val usuario: String,
+    val id_estado_cine: Int
+
 
     )
