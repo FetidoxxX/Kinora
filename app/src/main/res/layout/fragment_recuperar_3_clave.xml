@@ -8,7 +8,6 @@
     android:padding="32dp"
     android:background="@android:color/transparent">
 
-    <!-- Texto de ayuda -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +18,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Campo Nueva Contraseña -->
     <EditText
         android:id="@+id/et_nueva_clave"
         android:layout_width="match_parent"
@@ -32,7 +30,6 @@
         android:textColorHint="@color/kinora_text_hint"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Campo Confirmar Contraseña -->
     <EditText
         android:id="@+id/et_confirmar_clave"
         android:layout_width="match_parent"
@@ -45,7 +42,6 @@
         android:textColorHint="@color/kinora_text_hint"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Botón Guardar -->
     <Button
         android:id="@+id/btn_guardar_clave"
         android:layout_width="match_parent"

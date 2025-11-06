@@ -9,7 +9,6 @@
     android:background="@drawable/fondo"
     tools:context=".recuperar_clave">
 
-    <!-- Logo (persistente en la actividad) -->
     <ImageView
         android:id="@+id/iv_logo_recuperar"
         android:layout_width="100dp"
@@ -20,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Título (persistente en la actividad) -->
     <TextView
         android:id="@+id/tv_titulo_recuperar"
         android:layout_width="wrap_content"
@@ -34,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo_recuperar" />
 
-    <!-- Contenedor para los Fragmentos -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"

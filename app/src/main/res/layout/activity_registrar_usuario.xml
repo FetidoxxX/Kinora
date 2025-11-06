@@ -8,7 +8,6 @@
     android:background="@drawable/fondo"
     tools:context=".Registrar_usuario">
 
-    <!-- ScrollView para formularios largos -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +21,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="32dp">
 
-            <!-- Logo (más pequeño para registro) -->
             <ImageView
                 android:id="@+id/iv_logo_register"
                 android:layout_width="100dp"
@@ -46,7 +44,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_logo_register" />
 
-            <!-- Spinner Tipo Documento -->
             <Spinner
                 android:id="@+id/spntipo_doc"
                 android:layout_width="0dp"
@@ -60,7 +57,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <!-- Campo Número Documento -->
             <EditText
                 android:id="@+id/edtnum_doc"
                 android:layout_width="0dp"
@@ -79,7 +75,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spntipo_doc" />
 
-            <!-- Campo Nombre -->
             <EditText
                 android:id="@+id/edtnombre_u"
                 android:layout_width="0dp"
@@ -98,7 +93,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtnum_doc" />
 
-            <!-- Campo Nombre de Usuario -->
             <EditText
                 android:id="@+id/edtuser_u"
                 android:layout_width="0dp"
@@ -117,7 +111,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtnombre_u" />
 
-            <!-- Campo Email -->
             <EditText
                 android:id="@+id/edtemail_u"
                 android:layout_width="0dp"
@@ -136,7 +129,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtuser_u" />
 
-            <!-- Campo Contraseña -->
             <EditText
                 android:id="@+id/edtpass_u"
                 android:layout_width="0dp"
@@ -156,7 +148,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtemail_u" />
 
-            <!-- Campo Confirmar Contraseña -->
             <EditText
                 android:id="@+id/edtpass_conf"
                 android:layout_width="0dp"
@@ -175,7 +166,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtpass_u" />
 
-            <!-- Botón Registrar -->
             <Button
                 android:id="@+id/btnregistrar_u"
                 android:layout_width="0dp"
