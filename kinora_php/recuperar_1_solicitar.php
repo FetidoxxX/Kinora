@@ -1,9 +1,7 @@
 <?php
-// --- INICIO DE LA MODIFICACIÓN ---
-// Ocultar errores y advertencias de PHP para asegurar una respuesta JSON limpia
+
 error_reporting(0);
 ini_set('display_errors', 0);
-// --- FIN DE LA MODIFICACIÓN ---
 
 header('Content-Type: application/json');
 include('conexion.php');
@@ -26,18 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
   }
 
-  // 1. Verificar si el email existe
-  $email_escaped = mysqli_real_escape_string($link, $email);
-  $sql_check = "SELECT id_u FROM usuario WHERE email = '$email_escaped'";
+
+  $sql_check = "SELECT id_u FROM usuario WHERE email = '$email'";
   $result_check = mysqli_query($link, $sql_check);
 
   if (mysqli_num_rows($result_check) > 0) {
-    // 2. Generar y guardar código
     $codigo = rand(100000, 999999); // Código de 6 dígitos
-    $sql_update = "UPDATE usuario SET codigo = '$codigo' WHERE email = '$email_escaped'";
+    $sql_update = "UPDATE usuario SET codigo = '$codigo' WHERE email = '$email'";
 
     if (mysqli_query($link, $sql_update)) {
-      // 3. Enviar correo (Usando mail() de XAMPP/Mercury)
       $para = $email;
       $asunto = '🔐 Código de Recuperación - Kinora';
       $mensaje = "
@@ -57,10 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </body>
             </html>";
 
-      // Encabezados
       $headers = "MIME-Version: 1.0" . "\r\n";
       $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-      $headers .= "From: Soporte Kinora <soporte@kinora.com>" . "\r\n";
+      $headers .= "From: Soporte Kinora <Kinorapp@gmail.com>" . "\r\n";
 
       if (mail($para, $asunto, $mensaje, $headers)) {
         $response['success'] = true;

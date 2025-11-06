@@ -15,12 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
   }
 
-  $email_escaped = mysqli_real_escape_string($link, $email);
-  $codigo_escaped = mysqli_real_escape_string($link, $codigo);
-
-  // Verificar el código (y que no sea nulo)
-  // NOTA: No podemos verificar los 15 min sin un campo de timestamp en la BD.
-  $sql = "SELECT id_u FROM usuario WHERE email = '$email_escaped' AND codigo = '$codigo_escaped' AND codigo IS NOT NULL";
+  $sql = "SELECT id_u FROM usuario WHERE email = '$email' AND codigo = '$codigo' AND codigo IS NOT NULL";
 
   $result = mysqli_query($link, $sql);
 

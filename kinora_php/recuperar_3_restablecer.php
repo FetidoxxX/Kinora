@@ -18,11 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $email_escaped = mysqli_real_escape_string($link, $email);
   $codigo_escaped = mysqli_real_escape_string($link, $codigo);
-  // Idealmente, aquí se debería hashear la clave.
-  // Por simplicidad (y siguiendo el login.php), la guardamos en texto plano.
   $clave_escaped = mysqli_real_escape_string($link, $nueva_clave);
 
-  // Verificamos el código OTRA VEZ por seguridad
   $sql_update = "UPDATE usuario 
                    SET clave = '$clave_escaped', codigo = NULL 
                    WHERE email = '$email_escaped' AND codigo = '$codigo_escaped' AND codigo IS NOT NULL";
