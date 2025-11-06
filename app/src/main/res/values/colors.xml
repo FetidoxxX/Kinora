@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta de Kinora -->
+    <color name="kinora_dark_blue">#100F1E</color>
+    <color name="kinora_purple_primary">#383180</color>
+    <color name="kinora_purple_accent">#6C6C98</color>
+    <color name="kinora_text_hint">#AFAFAF</color>
 </resources>

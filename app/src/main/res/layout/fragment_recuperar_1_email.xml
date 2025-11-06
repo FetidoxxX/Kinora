@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
+    android:gravity="top|center_horizontal"
+    android:padding="32dp"
     android:background="@android:color/transparent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recuperar Contraseña"
-        android:textColor="@android:color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
-
+    <!-- Texto de ayuda -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingresa tu correo electrónico para enviarte un código de verificación."
-        android:textColor="#AFAFAF"
+        android:textColor="@color/kinora_text_hint"
         android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"/>
 
+    <!-- Campo de Email -->
     <EditText
         android:id="@+id/et_recuperar_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_edittext"
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
-        android:textColor="@android:color/white"
-        android:textColorHint="#AFAFAF"
+        android:padding="14dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/kinora_text_hint"
         android:layout_marginBottom="16dp"/>
 
+    <!-- Botón Enviar Código -->
     <Button
         android:id="@+id/btn_enviar_codigo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enviar Código"/>
+        android:padding="14dp"
+        android:text="Enviar Código"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/kinora_purple_accent"
+        app:cornerRadius="12dp" />
 
 </LinearLayout>
