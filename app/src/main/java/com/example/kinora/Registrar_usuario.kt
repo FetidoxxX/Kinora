@@ -81,8 +81,8 @@ class Registrar_usuario : AppCompatActivity() {
                     listaIds.add(tipo.getInt("id_tipo_doc"))
                 }
 
-                val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaTipos)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                val adapter = ArrayAdapter(this, R.layout.spinner_item_layout, listaTipos)
+                adapter.setDropDownViewResource(R.layout.spinner_item_layout)
                 spntipo_doc.adapter = adapter
 
                 spntipo_doc.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
