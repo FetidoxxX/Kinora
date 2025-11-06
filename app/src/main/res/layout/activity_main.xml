@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/fondo">
 
     <TextView
         android:id="@+id/btnrecuperar"
@@ -32,6 +33,7 @@
         android:ems="10"
         android:hint="Usuario"
         android:inputType="text"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -47,6 +49,7 @@
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnrecuperar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +92,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
         android:text="No tienes Usuario?"
+        android:textColor="#FFFFFF"
         android:textSize="16dp"
         app:layout_constraintEnd_toStartOf="@+id/btncrear"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +106,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginEnd="186dp"
         android:text="LOGIN"
+        android:textColor="#FDFFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

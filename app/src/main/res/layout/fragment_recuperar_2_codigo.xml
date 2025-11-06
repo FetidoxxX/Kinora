@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verificar Código"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresa el código de 6 dígitos que enviamos a tu correo."
+        android:textColor="#AFAFAF"
+        android:textAlignment="center"
+        android:layout_marginBottom="24dp"/>
+
+    <EditText
+        android:id="@+id/et_recuperar_codigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código de 6 dígitos"
+        android:inputType="number"
+        android:maxLength="6"
+        android:textColor="@android:color/white"
+        android:textColorHint="#AFAFAF"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_verificar_codigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verificar"/>
+
+    <TextView
+        android:id="@+id/tv_reenviar_codigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reenviar código"
+        android:textColor="#FFFFFF"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

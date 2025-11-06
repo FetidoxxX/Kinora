@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recuperar_clave">
+    tools:context=".recuperar_clave"
+    android:background="@drawable/fondo">
 
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_marginTop="29dp"
         android:layout_marginEnd="152dp"
         android:text="Registro Usuario "
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +35,8 @@
         app:layout_constraintBottom_toTopOf="@+id/edtnum_doc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        />
 
     <EditText
         android:id="@+id/edtnum_doc"
