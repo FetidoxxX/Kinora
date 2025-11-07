@@ -126,6 +126,7 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
                 val nuevoDocumento = etDocumentoUsuario.text.toString()
 
                 val url = "http://10.0.2.2/kinora_php/actualizar_cine.php"
+                //val url = "http://192.168.1.4/kinora_php/actualizar_cine.php" //michael
 
                 val stringRequest = object: StringRequest(Method.POST,
                     url,

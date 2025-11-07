@@ -27,12 +27,14 @@ import com.android.volley.toolbox.StringRequest
 
 class cines_admin : nav_bar(), OnCineUpdateListener  {
 
+    private lateinit var adminSesiones: AdministradorSesiones
+
     private lateinit var recyclerViewCines: RecyclerView
     private lateinit var btnCrearCine: Button
 
     private lateinit var etBuscar: EditText
     private val url = "http://10.0.2.2/kinora_php/buscar_cines.php"
-
+    //private val url = "http://192.168.1.4/kinora_php/buscar_cines.php" //michael
     override fun onUpdateSuccess() {
         etBuscar.setText("") // o también etBuscar.text.clear()
         recyclerViewCines.adapter = CineAdapter(mutableListOf())
@@ -41,6 +43,10 @@ class cines_admin : nav_bar(), OnCineUpdateListener  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        adminSesiones = AdministradorSesiones(this)
+        adminSesiones.verificarAcceso(this, listOf(Roles.ADMINISTRADOR, Roles.ENCARGADO))
+
         setContentView(R.layout.activity_cines_admin)
         configurarNavBar()  //aqui se importa la funcionalidad de la barra de navegación
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
-open class nav_bar : AppCompatActivity() {
+open class nav_bar : BaseActivity() {
     protected fun configurarNavBar() {
         val btnPeliculas = findViewById<ImageButton>(R.id.btnPeliculas)
         val btnCines = findViewById<ImageButton>(R.id.btnCines)
@@ -22,7 +22,7 @@ open class nav_bar : AppCompatActivity() {
         }
 
         btnPlus?.setOnClickListener {
-            startActivity(Intent(this, Home::class.java))
+            startActivity(Intent(this, Usuario::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }

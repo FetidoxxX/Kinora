@@ -6,10 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Cines : AppCompatActivity() {
+class Cines : BaseActivity() {
+
+    private lateinit var adminSesiones: AdministradorSesiones
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        adminSesiones = AdministradorSesiones(this)
+        adminSesiones.verificarAcceso(this, listOf(Roles.CLIENTE))
+
         setContentView(R.layout.activity_cines)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

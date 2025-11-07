@@ -1,7 +1,6 @@
 package com.example.kinora
 
 data class usuario_class(
-    // ID del usuario (autoincremental, 0 si es nuevo)
     val id_u: Int,
 
     val documento: String,

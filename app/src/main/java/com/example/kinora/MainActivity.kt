@@ -22,12 +22,24 @@ class MainActivity : AppCompatActivity() {
     private var btnrecuperar: TextView? = null
     private var btniniciar: Button? = null
     private var btncrear: TextView? = null
+    private lateinit var adminSesiones: AdministradorSesiones
 
     private val url: String = "http://10.0.2.2/kinora_php/login.php"
+    //private val url: String = "http://192.168.1.4/kinora_php/login.php" //michael
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        adminSesiones = AdministradorSesiones(this)
+
+        if (adminSesiones.sesionIniciada()) {
+            // Si es así, ir directamente al Home y cerrar esta actividad
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
+            return // Importante para no seguir ejecutando el onCreate del Login
+        }
+
         setContentView(R.layout.activity_main)
 
         edtusuario = findViewById(R.id.edtusuario)
@@ -67,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                     else -> {
                         if (cleanResponse.startsWith("[{") && cleanResponse.endsWith("}]")) {
 
+                            adminSesiones.crearSesionDesdeJson(cleanResponse)
                             Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
 
                             val intent = Intent(this, Home::class.java)

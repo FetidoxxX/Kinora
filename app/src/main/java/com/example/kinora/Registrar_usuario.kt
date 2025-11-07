@@ -39,6 +39,7 @@ class Registrar_usuario : AppCompatActivity() {
 
 
     private var url: String = "http://10.0.2.2/kinora_PHP/registrar_u.php"
+    //private var url: String = "http://192.168.1.4/kinora_PHP/registrar_u.php"//michael
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
