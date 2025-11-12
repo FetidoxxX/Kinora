@@ -2,7 +2,6 @@ package com.example.kinora
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,8 @@ class Peliculas : nav_bar() {
 
     private lateinit var adminSesiones: AdministradorSesiones
     private lateinit var rvPeliculas: RecyclerView
-    private val url: String = "http://192.168.1.14/kinora_php/obtener_peliculas.php"
+    private val url: String = "http://192.168.1.12/kinora_php/obtener_peliculas.php"
+    //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class Peliculas : nav_bar() {
         cargarPeliculas()
     }
     private fun cargarPeliculas() {
-        Log.d("PeliculasActivity", "Iniciando la carga de películas desde: $url") // 1. Log para saber que la función se llama
+        Log.d("PeliculasActivity", "Iniciando la carga de películas desde: $url")
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -54,7 +54,7 @@ class Peliculas : nav_bar() {
                     val listaPeliculas = mutableListOf<Pelicula>()
                     for (i in 0 until response.length()) {
                         val jsonObject = response.getJSONObject(i)
-                        val id = jsonObject.getInt("id_pelicula")
+                        val id = jsonObject.getString("id_pelicula")
                         val nombre = jsonObject.getString("nombre")
                         val pelicula = Pelicula(id, nombre)
                         listaPeliculas.add(pelicula)

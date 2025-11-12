@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
     private var btncrear: TextView? = null
     private lateinit var adminSesiones: AdministradorSesiones
 
-    private val url: String = "http://172.20.10.3/kinora_php/login.php"
+    //private val url: String = "http://172.20.10.3/kinora_php/login.php"
     //private val url: String = "http://192.168.1.4/kinora_php/login.php" //michael
-    //private val url: String = "http://192.168.1.14/kinora_php/login.php" //Cristhian
+    private val url: String = "http://192.168.1.12/kinora_php/login.php" //Cristhian
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

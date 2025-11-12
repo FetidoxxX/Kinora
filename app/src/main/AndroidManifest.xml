@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".detalles_pelicula"
+            android:exported="false" />
+        <activity
             android:name=".item_pelicula"
             android:exported="false" />
         <activity
@@ -30,7 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".Peliculas"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".nav_bar"
             android:exported="false" />
