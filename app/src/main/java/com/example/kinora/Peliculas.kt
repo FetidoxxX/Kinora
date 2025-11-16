@@ -1,9 +1,9 @@
 package com.example.kinora
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.JsonArrayRequest
@@ -11,14 +11,24 @@ import com.android.volley.toolbox.Volley
 import com.android.volley.Request
 import org.json.JSONException
 import android.util.Log
-
-class Peliculas : nav_bar() {
+import android.widget.ImageButton
+import android.view.View
+import androidx.annotation.RequiresApi
+import android.widget.LinearLayout
+import android.widget.ImageView
+import android.view.animation.AnimationUtils
+import android.view.animation.Animation
+class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
     private lateinit var adminSesiones: AdministradorSesiones
     private lateinit var rvPeliculas: RecyclerView
-    private val url: String = "http://172.20.10.3/kinora_php/obtener_peliculas.php"
-    //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
 
+    private val url: String = "http://192.168.0.149/kinora_php/obtener_peliculas.php" // breyner
+    //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
+    //private val url: String = "http://172.20.10.3/kinora_php/obtener_peliculas.php" //Cristhian
+
+
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,14 +37,43 @@ class Peliculas : nav_bar() {
 
         setContentView(R.layout.activity_peliculas)
         configurarNavBar()
+        despliegue(this)
+        tipo(this)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         rvPeliculas = findViewById(R.id.rvPeliculas)
         rvPeliculas.layoutManager = LinearLayoutManager(this)
+
+        val btnCreacion = findViewById<ImageButton>(R.id.btnCreacion)
+        val vistaCreacion = findViewById<View>(R.id.includeCreacion)
+        val vistaFiltros = findViewById<View>(R.id.filtros)
+        val btnFiltros = findViewById<LinearLayout>(R.id.btnFiltros)
+        val btnFondoFiltros = findViewById<ImageView>(R.id.btnfondoOscurofiltros)
+
+        btnCreacion?.setOnClickListener {
+            vistaCreacion.visibility = View.VISIBLE
+        }
+
+        btnFiltros?.setOnClickListener {
+            val slideDown = AnimationUtils.loadAnimation(this, R.anim.surge_down)
+
+            vistaFiltros.startAnimation(slideDown)
+
+            slideDown.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    vistaFiltros.visibility = View.GONE
+                }
+                override fun onAnimationRepeat(animation: Animation?) {}
+            })
+        }
+
+
+        btnFondoFiltros?.setOnClickListener {
+            vistaFiltros.visibility = View.GONE
+        }
 
         cargarPeliculas()
     }
@@ -75,8 +114,6 @@ class Peliculas : nav_bar() {
 
         Volley.newRequestQueue(this).add(jsonArrayRequest)
     }
-
-
 
 
 }

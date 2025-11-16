@@ -17,6 +17,12 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".crear_Cosas"
+            android:exported="false" />
+        <activity
+            android:name=".Crear_Peliculas"
+            android:exported="false" />
+        <activity
             android:name=".detalles_pelicula"
             android:exported="false" />
         <activity
