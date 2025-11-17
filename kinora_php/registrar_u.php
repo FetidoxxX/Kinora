@@ -57,8 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 
 
-  $sql_insert = "INSERT INTO usuario (rol_id, nombre, email, clave, documento, id_tipo_doc, usuario) 
-            VALUES ($rol_id_cliente, '$nombre', '$email', '$clave', '$documento', $id_tipo_doc, '$usuario')";
+  $id_estado_activo = 1;
+
+  $sql_insert = "INSERT INTO usuario (rol_id, nombre, email, clave, documento, id_tipo_doc, usuario, id_estado_usuario) 
+            VALUES ($rol_id_cliente, '$nombre', '$email', '$clave', '$documento', $id_tipo_doc, '$usuario', $id_estado_activo)";
 
   if (mysqli_query($link, $sql_insert)) {
     header('Content-Type: application/json');

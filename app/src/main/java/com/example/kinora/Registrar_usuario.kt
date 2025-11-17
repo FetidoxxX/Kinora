@@ -20,7 +20,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
-
+// Importar Patterns para validar email
+import android.util.Patterns
 
 
 class Registrar_usuario : AppCompatActivity() {
@@ -38,8 +39,8 @@ class Registrar_usuario : AppCompatActivity() {
     private var idTipoSeleccionado: Int? = null
 
 
-    private var url: String = "http://10.0.2.2/kinora_PHP/registrar_u.php"
-    //private var url: String = "http://192.168.1.4/kinora_PHP/registrar_u.php"//michael
+    //private var url: String = "http://10.0.2.2/kinora_PHP/registrar_u.php"
+    private var url: String = "http://192.168.1.6/kinora_PHP/registrar_u.php"//michael
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +65,7 @@ class Registrar_usuario : AppCompatActivity() {
         cargarTiposDocumento()
 
         btnregistrar_u.setOnClickListener {
+            // Se llama a la función actualizada
             registrar_usuario()
         }
     }
@@ -106,6 +108,13 @@ class Registrar_usuario : AppCompatActivity() {
     }
 
     fun registrar_usuario() {
+        edtnum_doc.error = null
+        edtnombre_u.error = null
+        edtemail_u.error = null
+        edtuser_u.error = null
+        edtpass_u.error = null
+        edtpass_conf.error = null
+
         val documento = edtnum_doc.text.toString().trim()
         val nombre = edtnombre_u.text.toString().trim()
         val email = edtemail_u.text.toString().trim()
@@ -120,8 +129,31 @@ class Registrar_usuario : AppCompatActivity() {
             return
         }
 
+        if (nombre.any { it.isDigit() }) {
+            Toast.makeText(this, "El nombre no debe contener números.", Toast.LENGTH_LONG).show()
+            edtnombre_u.error = "Nombre inválido"
+            edtnombre_u.requestFocus()
+            return
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "El formato del correo no es válido.", Toast.LENGTH_LONG).show()
+            edtemail_u.error = "Email inválido"
+            edtemail_u.requestFocus()
+            return
+        }
+
+        if (clave.length < 8) {
+            Toast.makeText(this, "La contraseña debe tener al menos 8 caracteres.", Toast.LENGTH_LONG).show()
+            edtpass_u.error = "Mínimo 8 caracteres"
+            edtpass_u.requestFocus()
+            return
+        }
+
         if (clave != clave_conf) {
             Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_LONG).show()
+            edtpass_conf.error = "Las contraseñas no coinciden"
+            edtpass_conf.requestFocus()
             return
         }
 
@@ -185,8 +217,4 @@ class Registrar_usuario : AppCompatActivity() {
         edtpass_conf.setText("")
         spntipo_doc.setSelection(0)
     }
-
-
-
 }
-
