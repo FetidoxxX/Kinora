@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/includeCreacion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:context=".DeplegableCreacion">
+
+
+    <ImageView
+        android:id="@+id/btnfondoOscuro"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/fondo_oscurecido"
+        android:scaleType="fitXY"
+        android:alpha="0.6"
+        android:clickable="true"
+        android:focusable="true"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="77dp"
+        android:background="@drawable/fondo_creacion"
+        android:divider="@drawable/linea_divisora"
+        android:dividerPadding="8dp"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:showDividers="middle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnC_Pelicula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="Peliculas"
+            android:textAlignment="viewStart"
+            android:textColor="#FDFDFD" />
+
+        <Button
+            android:id="@+id/btnC_Director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="Director"
+            android:textAlignment="viewStart"
+            android:textColor="#FDFDFD" />
+
+        <Button
+            android:id="@+id/btnC_Genero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="Genero"
+            android:textAlignment="viewStart"
+            android:textColor="#FDFDFD" />
+
+        <Button
+            android:id="@+id/btnC_Clasificacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="Clasificación"
+            android:textAlignment="viewStart"
+            android:textColor="#FDFDFD" />
+
+        <Button
+            android:id="@+id/btnC_Tipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="Tipo"
+            android:textAlignment="viewStart"
+            android:textColor="#FDFDFD" />
+
+        <Button
+            android:id="@+id/btnC_Actores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="Actores"
+            android:textAlignment="viewStart"
+            android:textColor="#FDFDFD" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
