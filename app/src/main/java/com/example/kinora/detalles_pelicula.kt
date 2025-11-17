@@ -19,7 +19,7 @@ import org.json.JSONException
 
 class detalles_pelicula : DialogFragment() {
 
-    private val baseUrl = "http://172.20.10.3/kinora_php/"
+    private val baseUrl = "http://192.168.1.11/Kinora/kinora_php/"
 
     private lateinit var txtTitulo: TextView
     private lateinit var txtDirector: TextView

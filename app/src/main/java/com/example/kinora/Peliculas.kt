@@ -23,9 +23,9 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
     private lateinit var adminSesiones: AdministradorSesiones
     private lateinit var rvPeliculas: RecyclerView
 
-    private val url: String = "http://192.168.0.149/kinora_php/obtener_peliculas.php" // breyner
+    //private val url: String = "http://192.168.0.149/kinora_php/obtener_peliculas.php" // breyner
     //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
-    //private val url: String = "http://172.20.10.3/kinora_php/obtener_peliculas.php" //Cristhian
+    private val url: String = "http://192.168.1.11/Kinora/kinora_php/obtener_peliculas.php" //Cristhian
 
 
     @RequiresApi(Build.VERSION_CODES.R)

@@ -3,6 +3,43 @@ header('Content-Type: application/json; charset=utf-8');
 require_once 'conexion.php';
 $conn = Conectar();
 
+// helpers
+function send_json($arr) {
+    echo json_encode($arr);
+    exit;
+}
+
+function get_id_by($conn, $table, $field, $value) {
+    $value = trim($value);
+    if ($value === '') return null;
+    $v = mysqli_real_escape_string($conn, $value);
+    $res = mysqli_query($conn, "SELECT * FROM `$table` WHERE `$field` = '$v' LIMIT 1");
+    if ($res && $row = mysqli_fetch_assoc($res)) {
+        foreach ($row as $k => $val) {
+            if (stripos($k, 'id_') === 0) return $val;
+        }
+        return array_values($row)[0];
+    }
+    return null;
+}
+
+function get_or_create($conn, $table, $field, $value) {
+    $value = trim($value);
+    if ($value === '') return null;
+    $safe = mysqli_real_escape_string($conn, $value);
+    $res = mysqli_query($conn, "SELECT * FROM `$table` WHERE `$field` = '$safe' LIMIT 1");
+    if ($res && $row = mysqli_fetch_assoc($res)) {
+        foreach ($row as $k => $v) if (stripos($k, 'id_') === 0) return intval($v);
+        return intval(array_values($row)[0]);
+    } else {
+        $ins = "INSERT INTO `$table` (`$field`) VALUES ('$safe')";
+        if (!mysqli_query($conn, $ins)) {
+            return null;
+        }
+        return intval(mysqli_insert_id($conn));
+    }
+}
+
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 switch ($action) {
@@ -11,41 +48,94 @@ switch ($action) {
         $res = mysqli_query($conn, "SELECT nombre FROM director ORDER BY nombre ASC");
         $arr = [];
         while ($row = mysqli_fetch_assoc($res)) $arr[] = $row;
-        echo json_encode($arr);
+        send_json($arr);
         break;
 
     case 'generos':
         $res = mysqli_query($conn, "SELECT genero AS nombre FROM genero ORDER BY genero ASC");
         $arr = [];
         while ($row = mysqli_fetch_assoc($res)) $arr[] = $row;
-        echo json_encode($arr);
+        send_json($arr);
         break;
 
     case 'tipos':
         $res = mysqli_query($conn, "SELECT tipo AS nombre FROM tipo ORDER BY tipo ASC");
         $arr = [];
         while ($row = mysqli_fetch_assoc($res)) $arr[] = $row;
-        echo json_encode($arr);
+        send_json($arr);
         break;
 
     case 'clasificaciones':
         $res = mysqli_query($conn, "SELECT clasificacion AS nombre FROM clasificacion ORDER BY clasificacion ASC");
         $arr = [];
         while ($row = mysqli_fetch_assoc($res)) $arr[] = $row;
-        echo json_encode($arr);
+        send_json($arr);
         break;
 
     case 'actores':
         $res = mysqli_query($conn, "SELECT nombre FROM actor ORDER BY nombre ASC");
         $arr = [];
         while ($row = mysqli_fetch_assoc($res)) $arr[] = $row;
-        echo json_encode($arr);
+        send_json($arr);
+        break;
+
+    case 'crear_pelicula':
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            send_json(['status'=>'error','error'=>'Use POST']);
+        }
+
+        $titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : '';
+        $director = isset($_POST['director']) ? trim($_POST['director']) : '';
+        $genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
+        $tipo = isset($_POST['tipo']) ? trim($_POST['tipo']) : '';
+        $clasificacion = isset($_POST['clasificacion']) ? trim($_POST['clasificacion']) : '';
+        $actores = isset($_POST['actores']) ? trim($_POST['actores']) : '';
+
+        if ($titulo === '') {
+            send_json(['status'=>'error','error'=>'Titulo requerido']);
+        }
+
+        $idDirector = ($director !== '') ? get_or_create($conn, 'director', 'nombre', $director) : null;
+        $idGenero = ($genero !== '') ? get_or_create($conn, 'genero', 'genero', $genero) : null;
+        $idTipo = ($tipo !== '') ? get_or_create($conn, 'tipo', 'tipo', $tipo) : null;
+        $idClasif = ($clasificacion !== '') ? get_or_create($conn, 'clasificacion', 'clasificacion', $clasificacion) : null;
+
+        $dirVal = is_null($idDirector) ? "NULL" : intval($idDirector);
+        $genVal = is_null($idGenero) ? "NULL" : intval($idGenero);
+        $tipoVal = is_null($idTipo) ? "NULL" : intval($idTipo);
+        $clasVal = is_null($idClasif) ? "NULL" : intval($idClasif);
+        $tituloSafe = mysqli_real_escape_string($conn, $titulo);
+
+        $sql = "INSERT INTO pelicula (nombre, director_id_director, genero_id_genero, clasificacion_id_clasificacion, tipo_id_tipo, poster, id_estado_pelicula, id_cine)
+                VALUES ('$tituloSafe', $dirVal, $genVal, $clasVal, $tipoVal, '1', '1', '1')";
+
+        if (!mysqli_query($conn, $sql)) {
+            send_json(['status'=>'error','error'=>mysqli_error($conn),'query'=>$sql]);
+        }
+
+        $newId = mysqli_insert_id($conn);
+
+        $actorList = array_filter(array_map('trim', explode(',', $actores)), function($v){ return $v !== ''; });
+        foreach ($actorList as $actorName) {
+            $actorSafe = mysqli_real_escape_string($conn, $actorName);
+            $resA = mysqli_query($conn, "SELECT id_actor FROM actor WHERE nombre = '$actorSafe' LIMIT 1");
+            if ($resA && $rowA = mysqli_fetch_assoc($resA)) {
+                $idActor = intval($rowA['id_actor']);
+            } else {
+                if (!mysqli_query($conn, "INSERT INTO actor (nombre) VALUES ('$actorSafe')")) {
+                    continue;
+                }
+                $idActor = intval(mysqli_insert_id($conn));
+            }
+            mysqli_query($conn, "INSERT INTO pelicula_has_actor (pelicula_id_pelicula, actor_id_actor) VALUES ('$newId', $idActor)");
+        }
+
+        send_json(['status'=>'success','id_pelicula'=>$newId]);
         break;
 
     case 'actualizar':
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode(['status'=>'error','error'=>'Use POST']);
-            break;
+            send_json(['status'=>'error','error'=>'Use POST']);
         }
         $id = isset($_POST['id']) ? trim($_POST['id']) : '';
         $titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : '';
@@ -56,24 +146,10 @@ switch ($action) {
         $actores = isset($_POST['actores']) ? trim($_POST['actores']) : '';
 
         if ($id === '' || $titulo === '') {
-            echo json_encode(['status'=>'error','error'=>'Faltan parametros id o titulo']);
-            break;
+            send_json(['status'=>'error','error'=>'Faltan parametros id o titulo']);
         }
 
         $actorList = array_filter(array_map('trim', explode(',', $actores)), function($v){ return $v !== ''; });
-
-        function get_id_by($conn, $table, $field, $value) {
-            if ($value === '') return null;
-            $v = mysqli_real_escape_string($conn, $value);
-            $res = mysqli_query($conn, "SELECT * FROM $table WHERE $field = '$v' LIMIT 1");
-            if ($res && $row = mysqli_fetch_assoc($res)) {
-                foreach ($row as $k => $val) {
-                    if (stripos($k, 'id_') === 0) return $val;
-                }
-                return array_values($row)[0];
-            }
-            return null;
-        }
 
         $idDirector = get_id_by($conn, 'director', 'nombre', $director);
         $idGenero = get_id_by($conn, 'genero', 'genero', $genero);
@@ -85,6 +161,7 @@ switch ($action) {
         $tipoVal = is_null($idTipo) ? "NULL" : intval($idTipo);
         $clasVal = is_null($idClasif) ? "NULL" : intval($idClasif);
         $tituloSafe = mysqli_real_escape_string($conn, $titulo);
+        $idSafe = mysqli_real_escape_string($conn, $id);
 
         $sqlUpdate = "UPDATE pelicula SET 
                         nombre = '$tituloSafe',
@@ -92,17 +169,14 @@ switch ($action) {
                         genero_id_genero = $genVal,
                         tipo_id_tipo = $tipoVal,
                         clasificacion_id_clasificacion = $clasVal
-                    WHERE id_pelicula = '".mysqli_real_escape_string($conn, $id)."'";
+                    WHERE id_pelicula = '$idSafe'";
 
         if (!mysqli_query($conn, $sqlUpdate)) {
-            echo json_encode(['status'=>'error','error'=>mysqli_error($conn)]);
-            break;
+            send_json(['status'=>'error','error'=>mysqli_error($conn)]);
         }
 
-        $idSafe = mysqli_real_escape_string($conn, $id);
         if (!mysqli_query($conn, "DELETE FROM pelicula_has_actor WHERE pelicula_id_pelicula = '$idSafe'")) {
-            echo json_encode(['status'=>'error','error'=>mysqli_error($conn)]);
-            break;
+            send_json(['status'=>'error','error'=>mysqli_error($conn)]);
         }
 
         foreach ($actorList as $actorName) {
@@ -111,19 +185,18 @@ switch ($action) {
             if ($resA && $rowA = mysqli_fetch_assoc($resA)) {
                 $idActor = intval($rowA['id_actor']);
                 if (!mysqli_query($conn, "INSERT INTO pelicula_has_actor (pelicula_id_pelicula, actor_id_actor) VALUES ('$idSafe', $idActor)")) {
-                    echo json_encode(['status'=>'error','error'=>mysqli_error($conn)]);
-                    break 2;
+                    send_json(['status'=>'error','error'=>mysqli_error($conn)]);
                 }
             } else {
                 continue;
             }
         }
 
-        echo json_encode(['status'=>'success']);
+        send_json(['status'=>'success']);
         break;
 
     default:
-        echo json_encode(['error'=>'Acción no válida']);
+        send_json(['error'=>'Acción no válida']);
         break;
 }
 
