@@ -7,19 +7,23 @@ $pass = $_REQUEST['clave'];
 if (empty($user) || empty($pass)) {
   echo "ERROR 1";
 } else {
-  $sql = "select * from usuario where usuario= '$user' and clave='$pass'";
+  $sql = "SELECT id_u, rol_id, nombre, email, usuario, id_estado_usuario 
+          FROM usuario 
+          WHERE usuario = '$user' AND clave = '$pass'";
+
   $res = mysqli_query($link, $sql);
-  $data = array();
-  $num = $res->num_rows;
-  if ($num > 0) {
-    while ($row = $res->fetch_assoc()) {
+  if ($res && $res->num_rows > 0) {
+    $row = $res->fetch_assoc();
+
+    if ($row['id_estado_usuario'] == 1) {
+      $data = array();
       $data[] = $row;
       echo json_encode($data);
+    } else {
+      echo "ERROR 3";
     }
   } else {
     echo "ERROR 2";
   }
 }
-
-
 ?>
