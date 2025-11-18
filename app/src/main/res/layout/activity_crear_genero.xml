@@ -26,7 +26,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="227dp"
         android:layout_height="232dp"
-        android:layout_marginStart="92dp"
         android:layout_marginTop="216dp"
         android:background="@drawable/fondo_creacion"
         android:dividerPadding="8dp"
@@ -34,6 +33,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

@@ -15,7 +15,8 @@ import com.android.volley.toolbox.Volley
 
 class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
-    private val baseUrl = "http://192.168.1.11/Kinora/kinora_php/"
+    private val baseUrl = "http://192.168.0.149/kinora_php/" // Breyner
+    //private val baseUrl = "http://192.168.1.11/Kinora/kinora_php/" //Cristhian
 
     private lateinit var edtTitulo: EditText
     private lateinit var edtDirector: AutoCompleteTextView
@@ -36,7 +37,7 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
     private val clasifList = ArrayList<String>()
     private lateinit var clasifAdapter: ArrayAdapter<String>
-
+    private val urlcrear_Cosas: String = "http://192.168.0.149/kinora_php/" // breyner"
     private val generosList = ArrayList<String>()
     private lateinit var generosAdapter: ArrayAdapter<String>
 
@@ -47,7 +48,56 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
         configurarNavBar()
         despliegue(this)
-        tipo(this)
+
+        //Creación de Tipo
+        val vistaCreacionTipo = findViewById<View>(R.id.crearTipo)
+        inicializarCreacionTipo(
+            context = this,
+            vistaCreacionTipo = vistaCreacionTipo,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Genero
+        val vistaCreacionGeneros = findViewById<View>(R.id.crearGenero)
+        inicializarCreacionGenero(
+            context = this,
+            vistaCreacionGenero = vistaCreacionGeneros,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Clasificacion
+        val vistaCreacionClasificacion = findViewById<View>(R.id.crearClasificacion)
+        inicializarCreacionClasificacion(
+            context = this,
+            vistaCreacionClasificacion = vistaCreacionClasificacion,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Actores
+        val vistaCreacionActor = findViewById<View>(R.id.crearActor)
+        inicializarCreacionActor(
+            context = this,
+            vistaCreacionActor = vistaCreacionActor,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Directores
+        val vistaCreacionDirector = findViewById<View>(R.id.crearDirector)
+        inicializarCreacionDirector(
+            context = this,
+            vistaCreacionDirector = vistaCreacionDirector,
+            baseUrl = urlcrear_Cosas
+        )
+
+
+        //Creación de Genero
+        val vistaCreacionGenero = findViewById<View>(R.id.crearGenero)
+        inicializarCreacionGenero(
+            context = this,
+            vistaCreacionGenero = vistaCreacionGenero,
+            baseUrl = urlcrear_Cosas
+        )
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             insets

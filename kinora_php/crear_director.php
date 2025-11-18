@@ -12,33 +12,33 @@ if (!$conn) {
 $action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
 
 switch ($action) {
-    case 'crear_director':
-        $nombre = isset($_POST['director']) ? trim($_POST['director']) : '';
+    case 'crear_tipo':
+        $nombre = isset($_POST['tipo']) ? trim($_POST['tipo']) : '';
         if ($nombre === '') {
-            echo json_encode(['status' => 'error', 'message' => 'El nombre del director no puede estar vacío.']);
+            echo json_encode(['status' => 'error', 'message' => 'El nombre del tipo no puede estar vacío.']);
             exit;
         }
 
         $safe = mysqli_real_escape_string($conn, $nombre);
-        $q = "SELECT id_director FROM director WHERE nombre = '$safe' LIMIT 1";
+        $q = "SELECT id_tipo FROM tipo WHERE tipo = '$safe' LIMIT 1";
         $res = mysqli_query($conn, $q);
         if ($res === false) {
             echo json_encode(['status' => 'error', 'message' => 'Error en consulta de verificación: ' . mysqli_error($conn)]);
             exit;
         }
         if ($row = mysqli_fetch_assoc($res)) {
-            echo json_encode(['status' => 'exists', 'message' => 'El director ya existe.', 'id' => intval($row['id_director'])]);
+            echo json_encode(['status' => 'exists', 'message' => 'El tipo ya existe.', 'id' => intval($row['id_tipo'])]);
             exit;
         }
 
-        $ins = "INSERT INTO director (nombre, apellido) VALUES ('$safe', 'perez')";
+        $ins = "INSERT INTO tipo (tipo) VALUES ('$safe')";
         if (!mysqli_query($conn, $ins)) {
-            echo json_encode(['status' => 'error', 'message' => 'Error al crear el director: ' . mysqli_error($conn)]);
+            echo json_encode(['status' => 'error', 'message' => 'Error al crear el tipo: ' . mysqli_error($conn)]);
             exit;
         }
 
         $new_id = mysqli_insert_id($conn);
-        echo json_encode(['status' => 'success', 'message' => 'Director creado exitosamente.', 'id' => intval($new_id)]);
+        echo json_encode(['status' => 'success', 'message' => 'Tipo creado exitosamente.', 'id' => intval($new_id)]);
         exit;
         break;
 

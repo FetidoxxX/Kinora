@@ -50,8 +50,6 @@ class cines_admin : nav_bar(), OnCineUpdateListener  {
         setContentView(R.layout.activity_cines_admin)
         configurarNavBar()  //aqui se importa la funcionalidad de la barra de navegación
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 

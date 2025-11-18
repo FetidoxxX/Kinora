@@ -25,8 +25,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="227dp"
-        android:layout_height="232dp"
-        android:layout_marginStart="92dp"
+        android:layout_height="274dp"
         android:layout_marginTop="216dp"
         android:background="@drawable/fondo_creacion"
         android:dividerPadding="8dp"
@@ -34,6 +33,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -60,13 +60,26 @@
             android:textSize="13sp" />
 
         <EditText
-            android:id="@+id/edtActor"
+            android:id="@+id/edtNombreActor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
             android:ems="10"
-            android:hint="Escribe un actor..."
+            android:hint="Nombre(s) del actor..."
+            android:inputType="text"
+            android:textColor="#FDFDFD"
+            android:textColorHint="#A2A2A2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/edtApellidoActor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Apellidos del actor..."
             android:inputType="text"
             android:textColor="#FDFDFD"
             android:textColorHint="#A2A2A2"

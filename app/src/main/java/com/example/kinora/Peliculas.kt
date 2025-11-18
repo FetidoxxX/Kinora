@@ -23,9 +23,10 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
     private lateinit var adminSesiones: AdministradorSesiones
     private lateinit var rvPeliculas: RecyclerView
 
-    //private val url: String = "http://192.168.0.149/kinora_php/obtener_peliculas.php" // breyner
+    private val url: String = "http://192.168.0.149/kinora_php/obtener_peliculas.php" // breyner
+    private val urlcrear_Cosas: String = "http://192.168.0.149/kinora_php/" // breyner"
     //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
-    private val url: String = "http://192.168.1.11/Kinora/kinora_php/obtener_peliculas.php" //Cristhian
+    //private val url: String = "http://192.168.1.11/Kinora/kinora_php/obtener_peliculas.php" //Cristhian
 
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -38,8 +39,49 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         setContentView(R.layout.activity_peliculas)
         configurarNavBar()
         despliegue(this)
-        tipo(this)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+
+        //Creación de Tipo
+        val vistaCreacionTipo = findViewById<View>(R.id.crearTipo)
+        inicializarCreacionTipo(
+            context = this,
+            vistaCreacionTipo = vistaCreacionTipo,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Genero
+        val vistaCreacionGenero = findViewById<View>(R.id.crearGenero)
+        inicializarCreacionGenero(
+            context = this,
+            vistaCreacionGenero = vistaCreacionGenero,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Clasificacion
+        val vistaCreacionClasificacion = findViewById<View>(R.id.crearClasificacion)
+        inicializarCreacionClasificacion(
+            context = this,
+            vistaCreacionClasificacion = vistaCreacionClasificacion,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Actores
+        val vistaCreacionActor = findViewById<View>(R.id.crearActor)
+        inicializarCreacionActor(
+            context = this,
+            vistaCreacionActor = vistaCreacionActor,
+            baseUrl = urlcrear_Cosas
+        )
+
+        //Creación de Directores
+        val vistaCreacionDirector = findViewById<View>(R.id.crearDirector)
+        inicializarCreacionDirector(
+            context = this,
+            vistaCreacionDirector = vistaCreacionDirector,
+            baseUrl = urlcrear_Cosas
+        )
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.peliculas)) { v, insets ->
             insets
         }
         rvPeliculas = findViewById(R.id.rvPeliculas)
@@ -56,20 +98,11 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         }
 
         btnFiltros?.setOnClickListener {
-            val slideDown = AnimationUtils.loadAnimation(this, R.anim.surge_down)
-
-            vistaFiltros.startAnimation(slideDown)
-
-            slideDown.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationStart(animation: Animation?) {}
-
-                override fun onAnimationEnd(animation: Animation?) {
-                    vistaFiltros.visibility = View.GONE
-                }
-                override fun onAnimationRepeat(animation: Animation?) {}
-            })
+            val slideIn = AnimationUtils.loadAnimation(this, R.anim.surge_up)
+            vistaFiltros.visibility = View.VISIBLE
+            vistaFiltros.startAnimation(slideIn)
+            slideIn.setAnimationListener(null)
         }
-
 
         btnFondoFiltros?.setOnClickListener {
             vistaFiltros.visibility = View.GONE
@@ -114,6 +147,8 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
         Volley.newRequestQueue(this).add(jsonArrayRequest)
     }
+
+
 
 
 }

@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".nav_bar">
 
+    <include
+        android:id="@+id/despliegue_nav_plus"
+        layout="@layout/despliegue_nav_plus"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <!-- Fondo completo de la barra -->
     <ImageView
         android:id="@+id/fondo_nav_bar"
@@ -33,6 +40,7 @@
     <!-- Botón películas a la izquierda -->
 
     <!-- Botón cines a la derecha -->
+
 
     <ImageButton
         android:id="@+id/btnPlus"
@@ -72,5 +80,7 @@
         app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@id/btnPlus"
         app:srcCompat="@drawable/cines" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
