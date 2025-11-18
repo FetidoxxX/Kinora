@@ -59,7 +59,6 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
             val tvTelefonoCine = dialogView.findViewById<TextView>(R.id.tv_detalle_telefono_cine)
             val tvNombreUsuario = dialogView.findViewById<TextView>(R.id.tv_detalle_nombre_usuario)
             val tvEmailUsuario = dialogView.findViewById<TextView>(R.id.tv_detalle_email_usuario)
-            val tvDocumentoUsuario = dialogView.findViewById<TextView>(R.id.tv_detalle_documento_usuario)
             val btnAceptar = dialogView.findViewById<Button>(R.id.btn_detalle_aceptar)
 
             tvNombreCine.text = cineActual.nombre
@@ -67,7 +66,6 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
             tvTelefonoCine.text = cineActual.telefono
             tvNombreUsuario.text = cineActual.nombre_usuario
             tvEmailUsuario.text = cineActual.email
-            tvDocumentoUsuario.text = cineActual.documento
 
             builder.setView(dialogView)
             val dialog = builder.create()
@@ -91,7 +89,7 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
             val etTelefonoCine = dialogView.findViewById<EditText>(R.id.et_actualizar_telefono)
             val etNombreUsuario = dialogView.findViewById<EditText>(R.id.et_actualizar_nombre_usuario)
             val etEmailUsuario = dialogView.findViewById<EditText>(R.id.et_actualizar_email)
-            val etDocumentoUsuario = dialogView.findViewById<EditText>(R.id.et_actualizar_documento)
+            //val etDocumentoUsuario = dialogView.findViewById<EditText>(R.id.et_actualizar_documento)
             val etUsuario=dialogView.findViewById<EditText>(R.id.et_actualizar_usuario)
             val btnActualizar = dialogView.findViewById<Button>(R.id.btn_actualizar_guardar)
             val spinnerEstado= dialogView.findViewById<Spinner>(R.id.spinner_actualizar_estado)
@@ -102,7 +100,7 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
             etTelefonoCine.setText(cineActual.telefono)
             etNombreUsuario.setText(cineActual.nombre_usuario)
             etEmailUsuario.setText(cineActual.email)
-            etDocumentoUsuario.setText(cineActual.documento)
+            //etDocumentoUsuario.setText(cineActual.documento)
             etUsuario.setText(cineActual.usuario)
             if(cineActual.id_estado_cine==2){
                 spinnerEstado.setSelection(1)
@@ -123,7 +121,7 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
                 val nuevoTelefono = etTelefonoCine.text.toString()
                 val nuevoNombreUsuario = etNombreUsuario.text.toString()
                 val nuevoEmail = etEmailUsuario.text.toString()
-                val nuevoDocumento = etDocumentoUsuario.text.toString()
+                //val nuevoDocumento = etDocumentoUsuario.text.toString()
 
                 val url = "http://10.0.2.2/kinora_php/actualizar_cine.php"
                 //val url = "http://192.168.1.4/kinora_php/actualizar_cine.php" //michael
@@ -159,7 +157,7 @@ class CineAdapter(private val listaCines: List<Cine>) : RecyclerView.Adapter<Cin
                         params["telefono"] = nuevoTelefono
                         params["nombre_usuario"] = nuevoNombreUsuario
                         params["email"] = nuevoEmail
-                        params["documento"] = nuevoDocumento
+                        //params["documento"] = nuevoDocumento
                         return params
                     }
 

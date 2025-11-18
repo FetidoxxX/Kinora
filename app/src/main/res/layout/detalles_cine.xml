@@ -95,14 +95,7 @@
         android:textSize="18sp"
         android:textColor="#FFF"/>
 
-    <TextView
-        android:id="@+id/tv_detalle_documento_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="123456789"
-        android:textSize="18sp"
-        android:layout_marginBottom="24dp"
-        android:textColor="#FFF"/>
+
 
 
     <Button

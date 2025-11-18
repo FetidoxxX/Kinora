@@ -94,10 +94,8 @@ class cines_admin : nav_bar(), OnCineUpdateListener  {
         val etTelefonoCine = dialogView.findViewById<EditText>(R.id.et_crear_telefono)
         val etNombreUsuario = dialogView.findViewById<EditText>(R.id.et_crear_nombre_usuario)
         val etEmailUsuario = dialogView.findViewById<EditText>(R.id.et_crear_email)
-        val etDocumentoUsuario = dialogView.findViewById<EditText>(R.id.et_crear_documento)
         val etUsuario=dialogView.findViewById<EditText>(R.id.et_crear_usuario)
         val spinnerEstado= dialogView.findViewById<Spinner>(R.id.spinner_crear_estado)
-        val spinnerTipoDocumento= dialogView.findViewById<Spinner>(R.id.spinner_tipo_documento)
 
 
 
@@ -116,10 +114,10 @@ class cines_admin : nav_bar(), OnCineUpdateListener  {
             val nuevoTelefono = etTelefonoCine.text.toString()
             val nuevoNombreUsuario = etNombreUsuario.text.toString()
             val nuevoEmail = etEmailUsuario.text.toString()
-            val nuevoDocumento = etDocumentoUsuario.text.toString()
+            //val nuevoDocumento = etDocumentoUsuario.text.toString()
             val nuevoUsuario=etUsuario.text.toString()
             val idEstadoCine=spinnerEstado.selectedItemPosition+1
-            val idTipoDocumento=spinnerTipoDocumento.selectedItemPosition+1
+            //val idTipoDocumento=spinnerTipoDocumento.selectedItemPosition+1
 
 
 
@@ -154,8 +152,8 @@ class cines_admin : nav_bar(), OnCineUpdateListener  {
                     params["telefono"] = nuevoTelefono
                     params["nombre_usuario"] = nuevoNombreUsuario
                     params["email"] = nuevoEmail
-                    params["id_tipo_documento"] = idTipoDocumento.toString()
-                    params["documento"] = nuevoDocumento
+                    //params["id_tipo_documento"] = idTipoDocumento.toString()
+                    //params["documento"] = nuevoDocumento
                     params["usuario"]= nuevoUsuario
                     return params
                 }

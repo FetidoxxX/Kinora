@@ -94,14 +94,7 @@
         android:textColor="@android:color/white"
         android:textColorHint="#AFAFAF"/>
 
-    <EditText
-        android:id="@+id/et_actualizar_documento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Documento del encargado"
-        android:inputType="number"
-        android:textColor="@android:color/white"
-        android:textColorHint="#AFAFAF"/>
+
 
     <EditText
         android:id="@+id/et_actualizar_usuario"
