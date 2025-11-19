@@ -47,5 +47,11 @@ open class nav_bar : BaseActivity() {
             startActivity(Intent(this, Usuario::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
+
+        btnPeticiones?.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            startActivity(Intent(this, Peticiones::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 }

@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Peticiones"
+            android:exported="false" />
+        <activity
             android:name=".crear_directores"
             android:exported="false" />
         <activity
