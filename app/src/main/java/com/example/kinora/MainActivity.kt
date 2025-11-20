@@ -25,11 +25,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adminSesiones: AdministradorSesiones
 
     //private val url: String = "http://172.20.10.3/kinora_php/login.php"
-    private val url: String = "http://192.168.0.149/kinora_php/login.php" // breyner
+    //private val url: String = "http://192.168.0.149/kinora_php/login.php" // breyner
     //private val url: String = "http://192.168.1.6/kinora_php/login.php" //michael
     //private val url: String = "http://192.168.1.11/Kinora/kinora_php/login.php" //Cristhian
-    //private val url: String = "http://10.0.2.2/kinora_php/login.php" //michael
-
+    private val url: String = "http://10.0.2.2/kinora_php/login.php" //michael
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +65,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
     private fun login() {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,

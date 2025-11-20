@@ -17,11 +17,11 @@ import org.json.JSONObject
 
 class Recuperar2CodigoFragment : Fragment() {
 
-    //private val urlVerificar = "http://10.0.2.2/kinora_php/recuperar_2_verificar.php"
-    private val urlVerificar = "http://192.168.1.6/kinora_php/recuperar_2_verificar.php"//michael
+    private val urlVerificar = "http://10.0.2.2/kinora_php/recuperar_2_verificar.php"
+    //private val urlVerificar = "http://192.168.1.6/kinora_php/recuperar_2_verificar.php"//michael
 
-    //private val urlSolicitar = "http://10.0.2.2/kinora_php/recuperar_1_solicitar.php"
-    private val urlSolicitar = "http://192.168.1.6/kinora_php/recuperar_1_solicitar.php"//michael
+    private val urlSolicitar = "http://10.0.2.2/kinora_php/recuperar_1_solicitar.php"
+    //private val urlSolicitar = "http://192.168.1.6/kinora_php/recuperar_1_solicitar.php"//michael
     private var email: String? = null
 
     override fun onCreateView(

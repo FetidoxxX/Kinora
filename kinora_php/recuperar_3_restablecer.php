@@ -16,13 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
   }
 
-  $email_escaped = mysqli_real_escape_string($link, $email);
-  $codigo_escaped = mysqli_real_escape_string($link, $codigo);
-  $clave_escaped = mysqli_real_escape_string($link, $nueva_clave);
-
   $sql_update = "UPDATE usuario 
-                   SET clave = '$clave_escaped', codigo = NULL 
-                   WHERE email = '$email_escaped' AND codigo = '$codigo_escaped' AND codigo IS NOT NULL";
+                   SET clave = '$nueva_clave', codigo = NULL 
+                   WHERE email = '$email' AND codigo = '$codigo' AND codigo IS NOT NULL";
 
   mysqli_query($link, $sql_update);
 

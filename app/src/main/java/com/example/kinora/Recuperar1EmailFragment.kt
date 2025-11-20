@@ -16,8 +16,8 @@ import org.json.JSONObject
 
 class Recuperar1EmailFragment : Fragment() {
 
-    //private val url = "http://10.0.2.2/kinora_php/recuperar_1_solicitar.php"
-    private val url = "http://192.168.1.6/kinora_php/recuperar_1_solicitar.php"//michael
+    private val url = "http://10.0.2.2/kinora_php/recuperar_1_solicitar.php"
+    //private val url = "http://192.168.1.6/kinora_php/recuperar_1_solicitar.php"//michael
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

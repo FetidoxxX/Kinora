@@ -16,8 +16,8 @@ import org.json.JSONObject
 
 class Recuperar3ClaveFragment : Fragment() {
 
-    //private val url = "http://10.0.2.2/kinora_php/recuperar_3_restablecer.php"
-    private val url = "http://192.168.1.6/kinora_php/recuperar_3_restablecer.php"//michael
+    private val url = "http://10.0.2.2/kinora_php/recuperar_3_restablecer.php"
+    //private val url = "http://192.168.1.6/kinora_php/recuperar_3_restablecer.php"//michael
     private var email: String? = null
     private var codigo: String? = null
 
@@ -48,8 +48,8 @@ class Recuperar3ClaveFragment : Fragment() {
                 Toast.makeText(requireContext(), "Complete ambos campos.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (nuevaClave.length < 6) {
-                Toast.makeText(requireContext(), "La contraseña debe tener al menos 6 caracteres.", Toast.LENGTH_SHORT).show()
+            if (nuevaClave.length < 8) {
+                Toast.makeText(requireContext(), "La contraseña debe tener al menos 8 caracteres.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (nuevaClave != confirmarClave) {
