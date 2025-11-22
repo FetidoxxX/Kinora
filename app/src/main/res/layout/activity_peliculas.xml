@@ -104,8 +104,22 @@
         android:layout_height="match_parent" />
 
     <include
+        android:id="@+id/AdminTipos"
+        layout="@layout/administrar_tipos"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
         android:id="@+id/crearTipo"
         layout="@layout/activity_crear_tipo"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/AdminGeneros"
+        layout="@layout/administrar_generos"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -118,6 +132,13 @@
         android:layout_height="match_parent" />
 
     <include
+        android:id="@+id/AdminDirector"
+        layout="@layout/administrar_directores"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
         android:id="@+id/crearDirector"
         layout="@layout/activity_crear_director"
         android:visibility="gone"
@@ -125,8 +146,22 @@
         android:layout_height="match_parent" />
 
     <include
+        android:id="@+id/AdminClasi"
+        layout="@layout/administrar_clasificaciones"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
         android:id="@+id/crearClasificacion"
         layout="@layout/activity_crear_clasificacion"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/AdminActores"
+        layout="@layout/administrar_actores"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

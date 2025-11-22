@@ -3,7 +3,7 @@
     android:shape="rectangle">
 
     <!-- Color con transparencia del 53% -->
-    <solid android:color="#231F4A"/>
+    <solid android:color="#100F1E"/>
 
     <!-- Border radius -->
     <corners android:radius="21dp"/>

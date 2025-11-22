@@ -59,7 +59,7 @@ interface crear_Cosas {
                     // Parsear la respuesta JSON
                     val json = org.json.JSONObject(response)
                     if (json.optString("status") == "success") {
-                        Toast.makeText(context, "Tipo '$nuevoTipo' creado correctamente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Tipo '$nuevoTipo'creado correctamente", Toast.LENGTH_SHORT).show()
                     } else {
                         val err = json.optString("error", "Error desconocido del servidor al crear tipo")
                         Toast.makeText(context, "Error servidor Tipo: $err", Toast.LENGTH_LONG).show()
