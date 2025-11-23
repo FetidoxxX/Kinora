@@ -65,7 +65,7 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
             baseUrl = urlcrear_Cosas
         )
 
-        //Creación de Clasificacion
+        //Creación de com.example.kinora.Clasificacion
         val vistaCreacionClasificacion = findViewById<View>(R.id.crearClasificacion)
         inicializarCreacionClasificacion(
             context = this,

@@ -1,13 +1,18 @@
 package com.example.kinora
 
+import CargarCosas
+import android.app.DownloadManager
 import android.content.Intent
-import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+
 interface DeplegableCreacion {
     fun despliegue(activity: AppCompatActivity) {
 
@@ -37,6 +42,7 @@ interface DeplegableCreacion {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             vistaAdministracionTipos.visibility = View.VISIBLE
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            inicializarCargaDeTipos(vistaAdministracionTipos)
         }
 
         btnCV_Tipo?.setOnClickListener {
@@ -51,6 +57,8 @@ interface DeplegableCreacion {
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
+
+
         //GENEROS
         val vistaCreacionGenero = activity.findViewById<View>(R.id.crearGenero)
         val btnC_Genero = activity.findViewById<Button>(R.id.btnC_Genero)
@@ -62,6 +70,7 @@ interface DeplegableCreacion {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             vistaAdministracionGenero.visibility = View.VISIBLE
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            inicializarCargaDeGeneros(vistaAdministracionGenero)
         }
 
         btnCV_Genero?.setOnClickListener {
@@ -87,6 +96,7 @@ interface DeplegableCreacion {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             vistaAdministracionClasi.visibility = View.VISIBLE
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            inicializarCargaDeClasificaciones(vistaAdministracionClasi)
         }
 
         btnCV_Clasi?.setOnClickListener {
@@ -112,6 +122,7 @@ interface DeplegableCreacion {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             vistaAdministracionDirector.visibility = View.VISIBLE
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            inicializarCargaDeDirectores(vistaAdministracionDirector)
         }
 
         btnCV_Director?.setOnClickListener {
@@ -137,6 +148,7 @@ interface DeplegableCreacion {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             vistaAdministracionActores.visibility = View.VISIBLE
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            inicializarCargaDeActores(vistaAdministracionActores)
         }
 
         btnCV_Actores?.setOnClickListener {
@@ -150,5 +162,84 @@ interface DeplegableCreacion {
             vistaAdministracionActores.visibility = View.GONE
             activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
+    }
+
+    fun inicializarCargaDeTipos(vista: View) {
+        val repository = CargarCosas(vista.context)
+        val rvTipos = vista.findViewById<RecyclerView>(R.id.rvTipos)
+
+        repository.cargarTipos(object : TipoCallback {
+            override fun onSuccess(listaTipos: List<Tipo>) {
+                val adapter = TiposAdapter(listaTipos)
+                rvTipos.adapter = adapter
+                rvTipos.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rvTipos.context)
+            }
+            override fun onError(mensaje: String) {
+                Toast.makeText(vista.context, mensaje, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    fun inicializarCargaDeGeneros(vista: View) {
+        val repository = CargarCosas(vista.context)
+        val rvGeneros = vista.findViewById<RecyclerView>(R.id.rvGeneros)
+
+        repository.cargarGeneros(object : GeneroCallback {
+            override fun onSuccess(listaGeneros: List<Genero>) {
+                val adapter = GenerosAdapter(listaGeneros)
+                rvGeneros.adapter = adapter
+                rvGeneros.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rvGeneros.context)
+            }
+            override fun onError(mensaje: String) {
+                Toast.makeText(vista.context, mensaje, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    fun inicializarCargaDeClasificaciones(vista: View) {
+        val repository = CargarCosas(vista.context)
+        val rvClasi = vista.findViewById<RecyclerView>(R.id.rvClasi)
+
+        repository.cargarClasi(object : ClasiCallback {
+            override fun onSuccess(listaClasificacion: List<Clasificacion>) {
+                val adapter = ClasificacionAdapter(listaClasificacion)
+                rvClasi.adapter = adapter
+                rvClasi.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rvClasi.context)
+            }
+            override fun onError(mensaje: String) {
+                Toast.makeText(vista.context, mensaje, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    fun inicializarCargaDeActores(vista: View) {
+        val repository = CargarCosas(vista.context)
+        val rvActores = vista.findViewById<RecyclerView>(R.id.rvActores)
+
+        repository.cargarActores(object : ActorCallback {
+            override fun onSuccess(listaActor: List<Actor>) {
+                val adapter = ActorAdapter(listaActor)
+                rvActores.adapter = adapter
+                rvActores.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rvActores.context)
+            }
+            override fun onError(mensaje: String) {
+                Toast.makeText(vista.context, mensaje, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+    fun inicializarCargaDeDirectores(vista: View) {
+        val repository = CargarCosas(vista.context)
+        val rvDirectores = vista.findViewById<RecyclerView>(R.id.rvDirectores)
+
+        repository.cargarDirectores(object : DirectorCallback {
+            override fun onSuccess(listaDirector: List<Director>) {
+                val adapter = DirectorAdapter(listaDirector)
+                rvDirectores.adapter = adapter
+                rvDirectores.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(rvDirectores.context)
+            }
+            override fun onError(mensaje: String) {
+                Toast.makeText(vista.context, mensaje, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

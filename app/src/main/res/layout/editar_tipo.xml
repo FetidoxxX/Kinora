@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/crearActor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
 
     <ImageView
-        android:id="@+id/btnfondoOscuroActores"
+        android:id="@+id/btnfondoOscuroTipo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/fondo_oscurecido"
@@ -25,7 +23,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="227dp"
-        android:layout_height="274dp"
+        android:layout_height="232dp"
         android:background="@drawable/fondo_creacion"
         android:dividerPadding="8dp"
         android:orientation="vertical"
@@ -38,59 +36,37 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txt_Actor"
+            android:id="@+id/txt_Tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:text="Crear Actor"
+            android:text="Editar"
             android:textColor="#FDFDFD"
             android:textSize="21sp"
             app:layout_constraintStart_toEndOf="@+id/btnCreacion"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txt_tipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Actor"
-            android:textColor="#FDFDFD"
-            android:textSize="13sp" />
 
         <EditText
-            android:id="@+id/edtNombreActor"
+            android:id="@+id/edtTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
-            android:hint="Nombre(s) del actor..."
-            android:inputType="text"
-            android:textColor="#FDFDFD"
-            android:textColorHint="#A2A2A2"
-            android:textSize="13sp" />
-
-        <EditText
-            android:id="@+id/edtApellidoActor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:ems="10"
-            android:hint="Apellidos del actor..."
+            android:hint="Escribe un tipo..."
             android:inputType="text"
             android:textColor="#FDFDFD"
             android:textColorHint="#A2A2A2"
             android:textSize="13sp" />
 
         <LinearLayout
-            android:id="@+id/btnCrearActor"
+            android:id="@+id/btnGuardarTipo"
             android:layout_width="114dp"
             android:layout_height="40dp"
             android:layout_marginStart="57dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="169dp"
             android:layout_marginBottom="150dp"
             android:background="@drawable/btnnegroblanco"
@@ -107,11 +83,12 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:text="Crear Actor"
+                android:text="Guardar"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
         </LinearLayout>
 
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,55 +38,47 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txt_Actor"
+            android:id="@+id/txt_Editar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:text="Crear Actor"
+            android:text="Editar"
             android:textColor="#FDFDFD"
             android:textSize="21sp"
             app:layout_constraintStart_toEndOf="@+id/btnCreacion"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txt_tipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Actor"
-            android:textColor="#FDFDFD"
-            android:textSize="13sp" />
+
 
         <EditText
-            android:id="@+id/edtNombreActor"
+            android:id="@+id/edtNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="25dp"
             android:ems="10"
-            android:hint="Nombre(s) del actor..."
+            android:hint="Nombres..."
             android:inputType="text"
             android:textColor="#FDFDFD"
             android:textColorHint="#A2A2A2"
             android:textSize="13sp" />
 
         <EditText
-            android:id="@+id/edtApellidoActor"
+            android:id="@+id/edtApellido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
             android:ems="10"
-            android:hint="Apellidos del actor..."
+            android:hint="Apellidos..."
             android:inputType="text"
             android:textColor="#FDFDFD"
             android:textColorHint="#A2A2A2"
             android:textSize="13sp" />
 
         <LinearLayout
-            android:id="@+id/btnCrearActor"
+            android:id="@+id/btnGuardar"
             android:layout_width="114dp"
             android:layout_height="40dp"
             android:layout_marginStart="57dp"
@@ -107,7 +99,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:text="Crear Actor"
+                android:text="Guardar"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
         </LinearLayout>

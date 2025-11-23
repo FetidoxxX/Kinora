@@ -23,8 +23,8 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
     private lateinit var adminSesiones: AdministradorSesiones
     private lateinit var rvPeliculas: RecyclerView
 
-    private val url: String = "http://192.168.0.149/kinora_php/obtener_peliculas.php" // breyner
-    private val urlcrear_Cosas: String = "http://192.168.0.149/kinora_php/" // breyner"
+    private val url: String = "http://192.168.80.25/kinora_php/obtener_peliculas.php" // breyner
+    private val urlcrear_Cosas: String = "http://192.168.80.25/kinora_php/" // breyner"
     //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
     //private val url: String = "http://192.168.1.11/Kinora/kinora_php/obtener_peliculas.php" //Cristhian
 
@@ -56,7 +56,7 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
             baseUrl = urlcrear_Cosas
         )
 
-        //Creación de Clasificacion
+        //Creación de com.example.kinora.Clasificacion
         val vistaCreacionClasificacion = findViewById<View>(R.id.crearClasificacion)
         inicializarCreacionClasificacion(
             context = this,

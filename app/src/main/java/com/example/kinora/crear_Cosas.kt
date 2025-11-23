@@ -192,7 +192,7 @@ interface crear_Cosas {
             if (nuevoClasificacion.isNotEmpty()) {
                 crearNuevoClasificacion(context, nuevoClasificacion, baseUrl)
             } else {
-                edtClasificacion.error = "Escribe la nueva Clasificacion"
+                edtClasificacion.error = "Escribe la nueva com.example.kinora.Clasificacion"
                 edtClasificacion.requestFocus()
             }
         }
@@ -202,26 +202,26 @@ interface crear_Cosas {
 
         val queue = Volley.newRequestQueue(context)
 
-        Log.d("PeliculaManager", "POST Clasificacion -> $url")
-        Log.d("PeliculaManager", "params Clasificacion -> clasificacion:$nuevoClasificacion")
+        Log.d("PeliculaManager", "POST com.example.kinora.Clasificacion -> $url")
+        Log.d("PeliculaManager", "params com.example.kinora.Clasificacion -> clasificacion:$nuevoClasificacion")
 
         val request = object : StringRequest(
             Request.Method.POST,
             url,
             { response ->
-                Log.d("PeliculaManager", "RESP Clasificacion: $response")
+                Log.d("PeliculaManager", "RESP com.example.kinora.Clasificacion: $response")
                 try {
                     val json = org.json.JSONObject(response)
                     if (json.optString("status") == "success") {
-                        Toast.makeText(context, "Clasificacion '$nuevoClasificacion' creado correctamente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "com.example.kinora.Clasificacion '$nuevoClasificacion' creado correctamente", Toast.LENGTH_SHORT).show()
 
                     } else {
                         val err = json.optString("error", "Error desconocido del servidor al crear tipo")
                         Toast.makeText(context, "Error servidor Tipo: $err", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
-                    Log.e("PeliculaManager", "Error parseando respuesta Clasificacion: ${e.message}", e)
-                    Toast.makeText(context, "Respuesta inesperada del servidor Clasificacion. Revisa logs.", Toast.LENGTH_LONG).show()
+                    Log.e("PeliculaManager", "Error parseando respuesta com.example.kinora.Clasificacion: ${e.message}", e)
+                    Toast.makeText(context, "Respuesta inesperada del servidor com.example.kinora.Clasificacion. Revisa logs.", Toast.LENGTH_LONG).show()
                 }
             },
             { error ->
@@ -229,10 +229,10 @@ interface crear_Cosas {
                 if (nr != null) {
                     val body = nr.data?.let { String(it) }
                     Log.e("PeliculaManager", "Volley error Tipo HTTP ${nr.statusCode} - body: $body", error)
-                    Toast.makeText(context, "Error crear Clasificacion: HTTP ${nr.statusCode} — ${body ?: error.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Error crear com.example.kinora.Clasificacion: HTTP ${nr.statusCode} — ${body ?: error.message}", Toast.LENGTH_LONG).show()
                 } else {
-                    Log.e("PeliculaManager", "Volley error Clasificacion sin respuesta: ${error.message}", error)
-                    Toast.makeText(context, "Error crear Clasificacion (sin respuesta): ${error.message}", Toast.LENGTH_LONG).show()
+                    Log.e("PeliculaManager", "Volley error com.example.kinora.Clasificacion sin respuesta: ${error.message}", error)
+                    Toast.makeText(context, "Error crear com.example.kinora.Clasificacion (sin respuesta): ${error.message}", Toast.LENGTH_LONG).show()
                 }
             }) {
 

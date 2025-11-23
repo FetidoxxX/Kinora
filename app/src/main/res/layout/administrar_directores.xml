@@ -50,7 +50,7 @@
                 android:scaleType="fitCenter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/agregar" />
+                app:srcCompat="@drawable/cerrar" />
 
             <TextView
                 android:id="@+id/txt_Director"
@@ -67,7 +67,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPeliculas"
+            android:id="@+id/rvDirectores"
             android:layout_width="match_parent"
             android:layout_height="386dp"
             android:paddingHorizontal="8dp"

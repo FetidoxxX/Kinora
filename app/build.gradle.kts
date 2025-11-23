@@ -53,6 +53,7 @@ dependencies {
 
     // Volley (para peticiones HTTP)
     implementation(libs.volley)
+    implementation(libs.androidx.tools.core)
 
     // Testing
     testImplementation(libs.junit)

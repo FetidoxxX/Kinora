@@ -12,6 +12,7 @@ constraintlayout = "2.1.4"
 cardview = "1.0.0"
 recyclerview = "1.4.0"
 volley = "1.2.1"
+toolsCore = "1.0.0-alpha13"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,6 +26,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
+androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
