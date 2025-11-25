@@ -50,7 +50,7 @@ class Peticiones : nav_bar(), OnPeticionUpdateListener {
         rvPeticiones = findViewById(R.id.rv_peticiones)
         rvPeticiones.layoutManager = LinearLayoutManager(this)
 
-        // Cargar todas las peticiones al iniciar (sin filtro)
+
         buscarPeticionesEnDB("")
 
 
@@ -76,7 +76,7 @@ class Peticiones : nav_bar(), OnPeticionUpdateListener {
 
     private fun buscarPeticionesEnDB(query: String) {
 
-        // Codificar el texto buscado para evitar problemas con espacios/acentos
+
         val urlConQuery = "$url?nombre=${Uri.encode(query)}"
         Log.d("PeticionesActivity", "URL de la petición: $urlConQuery")
 
@@ -117,7 +117,7 @@ class Peticiones : nav_bar(), OnPeticionUpdateListener {
                     listaPeticiones.add(peticion)
                 }
 
-                // Colocar el adapter (una única vez) o actualizarlo si ya existe
+
                 val adapter = PeticionesAdapter(listaPeticiones)
                 adapter.setOnPeticionUpdateListener(this)
 

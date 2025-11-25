@@ -1,6 +1,6 @@
 package com.example.kinora
 
-class Peticion (
+class Peticion(
     val id_cine: Int,
     val nombre_cine: String,
     val nombre_encargado: String,

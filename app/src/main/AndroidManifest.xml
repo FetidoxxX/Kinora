@@ -17,6 +17,15 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Reporte_cine"
+            android:exported="false" />
+        <activity
+            android:name=".Reporte_por_cine"
+            android:exported="false" />
+        <activity
+            android:name=".Reporte_clientes"
+            android:exported="false" />
+        <activity
             android:name=".Peticiones"
             android:exported="false" />
         <activity

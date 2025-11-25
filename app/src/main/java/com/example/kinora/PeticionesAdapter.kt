@@ -87,8 +87,7 @@ class PeticionesAdapter(private val listaPeticiones: List<Peticion>) : RecyclerV
                     Method.POST,
                     url,
                     Response.Listener<String> { response ->
-                        // Puedes parsear 'response' si devuelves JSON con mensaje
-                        Toast.makeText(context, "Respuesta: $response", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Película Aceptada", Toast.LENGTH_SHORT).show()
                         dialog.dismiss()
                         listener?.onUpdateSuccess()
                     },
