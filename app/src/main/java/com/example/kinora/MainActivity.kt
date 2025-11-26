@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adminSesiones: AdministradorSesiones
 
     //private val url: String = "http://172.20.10.3/kinora_php/login.php"
-    //private val url: String = "http://192.168.80.25/kinora_php/login.php" // breyner
+    private val url: String = "http://192.168.80.25/Kinora/kinora_php/login.php" // breyner
     //private val url: String = "http://192.168.1.6/kinora_php/login.php" //michael
-    private val url: String = "http://192.168.1.4/Kinora/kinora_php/login.php" //Cristhian
+    //private val url: String = "http://192.168.1.11/Kinora/kinora_php/login.php" //Cristhian
     //private val url: String = "http://10.0.2.2/kinora_php/login.php" //michael
 
 
@@ -37,11 +37,19 @@ class MainActivity : AppCompatActivity() {
         adminSesiones = AdministradorSesiones(this)
 
         if (adminSesiones.sesionIniciada()) {
-            // Si es así, ir directamente al Home y cerrar esta actividad
-            val intent = Intent(this, Peliculas::class.java)
+
+            val rolGuardado = adminSesiones.obtenerIdRol()
+
+            val destinoActivity = when (rolGuardado) {
+                Roles.ADMINISTRADOR -> Peliculas::class.java
+                Roles.ENCARGADO -> Home::class.java
+                Roles.CLIENTE -> Cartelera_Cliente::class.java
+                else -> MainActivity::class.java
+            }
+            val intent = Intent(this, destinoActivity)
             startActivity(intent)
             finish()
-            return // Importante para no seguir ejecutando el onCreate del Login
+            return
         }
 
         setContentView(R.layout.activity_main)
@@ -88,10 +96,8 @@ class MainActivity : AppCompatActivity() {
 
                             adminSesiones.crearSesionDesdeJson(cleanResponse)
                             Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+                            redirigirSegunRol(adminSesiones.obtenerIdRol())
 
-                            val intent = Intent(this, Home::class.java)
-                            startActivity(intent)
-                            finish()
                         } else {
                             Toast.makeText(this, "Error: Respuesta inválida del servidor", Toast.LENGTH_SHORT).show()
                         }
@@ -99,7 +105,6 @@ class MainActivity : AppCompatActivity() {
                 }
             },
             Response.ErrorListener { volleyError ->
-                // Error de red (el teléfono no puede conectarse al servidor web/URL)
                 Toast.makeText(this, "ERROR DE CONEXIÓN: Revise su red o la URL: ${volleyError.message}", Toast.LENGTH_LONG).show()
             }
         ) {
@@ -113,5 +118,18 @@ class MainActivity : AppCompatActivity() {
 
         val requestQueue: RequestQueue = Volley.newRequestQueue(this)
         requestQueue.add(stringRequest)
+    }
+
+    private fun redirigirSegunRol(rolId: Int) {
+        val destinoActivity = when (rolId) {
+            Roles.ADMINISTRADOR -> Peliculas::class.java
+            Roles.ENCARGADO -> Home::class.java
+            Roles.CLIENTE -> Cartelera_Cliente::class.java
+            else -> MainActivity::class.java
+        }
+
+        val intent = Intent(this, destinoActivity)
+        startActivity(intent)
+        finish()
     }
 }

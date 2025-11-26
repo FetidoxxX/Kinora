@@ -59,6 +59,9 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.androidx.tools.core)
 
+    // Dependencia de Glide (librería para carga de imágenes)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
