@@ -85,6 +85,7 @@ switch ($action) {
         }
 
         $titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : '';
+        $sinopsis = isset($_POST['sinopsis']) ? trim($_POST['sinopsis']) : '';
         $director = isset($_POST['director']) ? trim($_POST['director']) : '';
         $genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
         $tipo = isset($_POST['tipo']) ? trim($_POST['tipo']) : '';
@@ -95,6 +96,39 @@ switch ($action) {
             send_json(['status'=>'error','error'=>'Titulo requerido']);
         }
 
+        // procesar poster base64 (opcional)
+        $poster_db_value = '1'; // compatibilidad con tu proyecto
+        if (!empty($_POST['poster']) && !empty($_POST['poster_name'])) {
+            $posterBase64 = $_POST['poster'];
+            $posterNameRaw = $_POST['poster_name'];
+            // sanitizar y forzar extension .jpg si no hay
+            $posterName = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $posterNameRaw);
+            if (!preg_match('/\.(jpg|jpeg|png)$/i', $posterName)) {
+                $posterName .= '.jpg';
+            }
+            $posterData = base64_decode($posterBase64);
+            if ($posterData !== false) {
+                $uploadDir = __DIR__ . '/uploads/';
+                if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+                $savePath = $uploadDir . $posterName;
+                // si ya existe, añadir sufijo timestamp
+                if (file_exists($savePath)) {
+                    $posterName = pathinfo($posterName, PATHINFO_FILENAME) . '_' . time() . '.' . pathinfo($posterName, PATHINFO_EXTENSION);
+                    $savePath = $uploadDir . $posterName;
+                }
+                // validar que sea imagen básica (opcional): usar getimagesizefromstring
+                $imgInfo = @getimagesizefromstring($posterData);
+                if ($imgInfo !== false) {
+                    if (file_put_contents($savePath, $posterData) !== false) {
+                        // ruta relativa para guardar en DB (ajusta si tu acceso web necesita otra ruta)
+                        $poster_db_value = 'uploads/' . $posterName;
+                    }
+                }
+            }
+        }
+
+
+
         $idDirector = ($director !== '') ? get_or_create($conn, 'director', 'nombre', $director) : null;
         $idGenero = ($genero !== '') ? get_or_create($conn, 'genero', 'genero', $genero) : null;
         $idTipo = ($tipo !== '') ? get_or_create($conn, 'tipo', 'tipo', $tipo) : null;
@@ -104,10 +138,15 @@ switch ($action) {
         $genVal = is_null($idGenero) ? "NULL" : intval($idGenero);
         $tipoVal = is_null($idTipo) ? "NULL" : intval($idTipo);
         $clasVal = is_null($idClasif) ? "NULL" : intval($idClasif);
+        $sinopsisSafe = mysqli_real_escape_string($conn, $sinopsis);
         $tituloSafe = mysqli_real_escape_string($conn, $titulo);
 
-        $sql = "INSERT INTO pelicula (nombre, director_id_director, genero_id_genero, clasificacion_id_clasificacion, tipo_id_tipo, poster, id_estado_pelicula, id_cine)
-                VALUES ('$tituloSafe', $dirVal, $genVal, $clasVal, $tipoVal, '1', '1', '1')";
+        // preparar valor para SQL (si poster_db_value == '1' mantenemos '1' para compatibilidad)
+        $posterSqlValue = ($poster_db_value === '1') ? "'1'" : "'" . mysqli_real_escape_string($conn, $poster_db_value) . "'";
+
+
+        $sql = "INSERT INTO pelicula (nombre, sinopsis, director_id_director, genero_id_genero, clasificacion_id_clasificacion, tipo_id_tipo, poster, id_estado_pelicula, id_cine)
+                VALUES ('$tituloSafe', '$sinopsisSafe', $dirVal, $genVal, $clasVal, $tipoVal, $posterSqlValue, '1', '1')";
 
         if (!mysqli_query($conn, $sql)) {
             send_json(['status'=>'error','error'=>mysqli_error($conn),'query'=>$sql]);

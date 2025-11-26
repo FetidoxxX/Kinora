@@ -1,24 +1,31 @@
 package com.example.kinora
 
+import android.content.ContentResolver
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import java.io.InputStream
 
 class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
-    private val baseUrl = "http://192.168.0.149/kinora_php/" // Breyner
-    //private val baseUrl = "http://192.168.1.11/Kinora/kinora_php/" //Cristhian
+    //private val baseUrl = "http://192.168.0.149/kinora_php/" // Breyner
+    private val baseUrl = "http://192.168.1.4/Kinora/kinora_php/" //Cristhian
 
     private lateinit var edtTitulo: EditText
+    private lateinit var edtSinopsis: EditText
     private lateinit var edtDirector: AutoCompleteTextView
     private lateinit var edtGenero: Spinner
     private lateinit var edtTipo: AutoCompleteTextView
@@ -28,6 +35,11 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
     private lateinit var btnCreacionTop: ImageButton
     private lateinit var vistaCreacion: View
     private lateinit var btnCrear: LinearLayout
+    private lateinit var btnPortada: Button
+
+    private var posterBase64: String? = null
+    private var posterFileName: String? = null
+    private lateinit var pickImageLauncher: ActivityResultLauncher<String>
 
     private val directorsList = ArrayList<String>()
     private lateinit var directorsAdapter: ArrayAdapter<String>
@@ -106,6 +118,7 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         btnCreacionTop = findViewById(R.id.btnCreacion)
         vistaCreacion = findViewById(R.id.includeCreacion)
         edtTitulo = findViewById(R.id.edtTitulo)
+        edtSinopsis = findViewById(R.id.edtSinopsis)
         edtDirector = findViewById(R.id.edtDirector)
         edtGenero = findViewById(R.id.edtGenero)
         edtTipo = findViewById(R.id.edtTipo)
@@ -113,6 +126,7 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         btnAgregar = findViewById(R.id.btnAgregar)
         actorsContainer = findViewById(R.id.actorsContainer)
         btnCrear = findViewById(R.id.btnCrear)
+        btnPortada = findViewById(R.id.btnPortada)
 
         directorsAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, directorsList)
         edtDirector.setAdapter(directorsAdapter)
@@ -135,6 +149,32 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
             vistaCreacion.visibility = View.VISIBLE
         }
 
+        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            if (uri != null) {
+                try {
+                    val bytes = readBytesFromUri(uri)
+                    if (bytes != null) {
+                        posterBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
+                        posterFileName = "poster_${System.currentTimeMillis()}.jpg"
+                        Toast.makeText(this, "Portada seleccionada exitosamente", Toast.LENGTH_SHORT).show()
+                        Log.d("Crear_Peliculas", "Poster seleccionado: ${posterFileName?.substring(0, 20)}...")
+                    } else {
+                        Toast.makeText(this, "No se pudo leer la imagen seleccionada", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (ex: Exception) {
+                    Log.e("Crear_Peliculas", "Error procesando imagen: ${ex.message}", ex)
+                    Toast.makeText(this, "Error procesando la imagen", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "No se seleccionó imagen", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnPortada.setOnClickListener {
+            // lanza selector de tipo image/*
+            pickImageLauncher.launch("image/*")
+        }
+
         cargarListasIniciales()
 
         mostrarAlFoco(edtDirector, "directores")
@@ -149,6 +189,19 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         addActorField()
 
         btnCrear.setOnClickListener { guardarPelicula() }
+    }
+
+    private fun readBytesFromUri(uri: Uri): ByteArray? {
+        return try {
+            val cr: ContentResolver = contentResolver
+            val input: InputStream? = cr.openInputStream(uri)
+            val bytes = input?.readBytes()
+            input?.close()
+            bytes
+        } catch (e: Exception) {
+            Log.e("Crear_Peliculas", "readBytesFromUri error: ${e.message}", e)
+            null
+        }
     }
 
     private fun cargarListasIniciales() {
@@ -253,6 +306,12 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
             edtTitulo.requestFocus()
             return
         }
+        val sinopsis = edtSinopsis.text.toString().trim()
+        if (sinopsis.isEmpty()) {
+            edtSinopsis.error = "Sinopsis requerida"
+            edtSinopsis.requestFocus()
+            return
+        }
 
         val director = edtDirector.text.toString().trim()
         val genero = if (edtGenero.selectedItem != null) edtGenero.selectedItem.toString() else ""
@@ -273,7 +332,7 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         val queue = Volley.newRequestQueue(this)
 
         Log.d("Crear_Peliculas", "POST -> $url")
-        Log.d("Crear_Peliculas", "params -> titulo:$titulo director:$director genero:$genero tipo:$tipo clasif:$clasificacion actores:$actoresCsv")
+        Log.d("Crear_Peliculas", "params -> titulo:$titulo sinopsis: $sinopsis director:$director genero:$genero tipo:$tipo clasif:$clasificacion actores:$actoresCsv poster:${posterFileName ?: "none"}")
 
         val request = object : StringRequest(Request.Method.POST, url,
             { response ->
@@ -284,7 +343,7 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
                         Toast.makeText(this, "Película creada correctamente", Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        val err = json.optString("error", "Error desconocido del servidor")
+                        val err = json.optString("error", json.optString("message", "Error desconocido del servidor"))
                         Toast.makeText(this, "Error servidor: $err", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
@@ -306,11 +365,19 @@ class Crear_Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
             override fun getParams(): MutableMap<String, String> {
                 val p = HashMap<String, String>()
                 p["titulo"] = titulo
+                p["sinopsis"] = sinopsis
                 p["director"] = director
                 p["genero"] = genero
                 p["tipo"] = tipo
                 p["clasificacion"] = clasificacion
                 p["actores"] = actoresCsv
+
+                // agregar imagen si fue seleccionada
+                posterBase64?.let {
+                    p["poster"] = it
+                    p["poster_name"] = posterFileName ?: "poster_${System.currentTimeMillis()}.jpg"
+                }
+
                 return p
             }
 
