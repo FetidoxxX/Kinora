@@ -63,23 +63,12 @@
 
     <include
         android:id="@+id/navBarInclude"
-        layout="@layout/nav_bar"
+        layout="@layout/nav_bar_cliente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <View
-        android:id="@+id/fadeBottom"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/desvanecido_cliente"
-        app:layout_constraintBottom_toBottomOf="@+id/rvPeliculas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -108,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:text="Director:"
+                android:text="Director: "
                 android:textColor="#FDFDFD" />
 
             <TextView
@@ -116,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Reparto:"
+                android:text="Reparto: "
                 android:textColor="#FDFDFD" />
 
             <TextView
@@ -124,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Clasificación:"
+                android:text="Clasificación: "
                 android:textColor="#FDFDFD" />
 
             <TextView
@@ -132,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Genero:"
+                android:text="Genero: "
                 android:textColor="#FDFDFD" />
 
             <TextView
@@ -140,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tipo:"
+                android:text="Tipo: "
                 android:textColor="#FDFDFD" />
 
             <TextView
@@ -148,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sinopsis:"
+                android:text="Sinopsis: "
                 android:textColor="#FDFDFD" />
         </LinearLayout>
 
@@ -248,15 +237,16 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPeliculas"
-        android:layout_width="390dp"
-        android:layout_height="169dp"
+        android:id="@+id/rvFunciones"
+        android:layout_width="400dp"
+        android:layout_height="284dp"
         android:layout_marginTop="16dp"
         android:paddingHorizontal="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        tools:listitem="@layout/pelicula_cartelera" />
+        tools:listitem="@layout/item_funcion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

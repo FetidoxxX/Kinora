@@ -1,0 +1,97 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".nav_bar">
+
+
+    <View
+        android:id="@+id/fadeBottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/desvanecido_cliente"
+        app:layout_constraintBottom_toTopOf="@+id/fondo_boton_plus"
+        app:layout_constraintEnd_toEndOf="@+id/fondo_nav_bar"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toStartOf="@+id/fondo_nav_bar" />
+
+    <include
+        android:id="@+id/despliegue_nav_plus"
+        layout="@layout/despliegue_nav_plus"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Fondo completo de la barra -->
+    <ImageView
+        android:id="@+id/fondo_nav_bar"
+        android:layout_width="415dp"
+        android:layout_height="103dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/fondo_nav_bar" />
+
+    <!-- Fondo del botón plus centrado -->
+    <ImageView
+        android:id="@+id/fondo_boton_plus"
+        android:layout_width="322dp"
+        android:layout_height="113dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="@id/fondo_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/fondo_boton_plus" />
+
+    <!-- Botón grande central -->
+
+    <!-- Botón películas a la izquierda -->
+
+    <!-- Botón cines a la derecha -->
+
+
+    <ImageButton
+        android:id="@+id/btnPlus"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/fondo_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/boton_plus" />
+
+    <ImageButton
+        android:id="@+id/btnPeliculas"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/fondo_nav_bar"
+        app:layout_constraintEnd_toStartOf="@id/btnPlus"
+        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/peliculas" />
+
+    <ImageButton
+        android:id="@+id/btnCines"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/fondo_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toEndOf="@id/btnPlus"
+        app:srcCompat="@drawable/cines" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

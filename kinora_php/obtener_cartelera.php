@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 require_once 'conexion.php'; 
 $conn = Conectar();
 
-$URL_BASE_POSTERS = "http://192.168.80.25/kinora_php/posters/";
+$URL_BASE_POSTERS = "http://192.168.80.25/Kinora/kinora_php/";
 
 $sql = "SELECT DISTINCT 
             p.id_pelicula, 

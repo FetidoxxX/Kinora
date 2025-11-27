@@ -18,7 +18,7 @@ import com.example.kinora.TipoCallback
 
 class CargarCosas(private val context: Context) {
     fun cargarTipos(callback: TipoCallback) {
-        val urlTipos = "http://192.168.80.25/kinora_php/obtener_tipos.php"
+        val urlTipos = "http://192.168.80.25/Kinora/kinora_php/obtener_tipos.php"//Breyner
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, urlTipos, null,
