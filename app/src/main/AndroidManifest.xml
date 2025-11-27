@@ -32,22 +32,13 @@
             android:name=".Reporte_clientes"
             android:exported="false" />
         <activity
+            android:name=".Reportes_PDF"
+            android:exported="false" />
+        <activity
             android:name=".Peticiones"
             android:exported="false" />
         <activity
-            android:name=".crear_directores"
-            android:exported="false" />
-        <activity
-            android:name=".crear_director"
-            android:exported="false" />
-        <activity
-            android:name=".crear_Cosas"
-            android:exported="false" />
-        <activity
             android:name=".Crear_Peliculas"
-            android:exported="false" />
-        <activity
-            android:name=".detalles_pelicula"
             android:exported="false" />
         <activity
             android:name=".item_pelicula"

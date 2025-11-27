@@ -1,14 +1,16 @@
 package com.example.kinora
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,11 @@ class Reporte_por_cine : nav_bar(), OnReportePorCineUpdateListener {
     private lateinit var adminSesiones: AdministradorSesiones
     private lateinit var rvCines: RecyclerView
     private lateinit var etBuscarCines: EditText
+    private lateinit var etFechaInicio: EditText
+    private lateinit var etFechaFinal: EditText
+    private var cineSeleccionado: Cine? = null
+
+
 
     private val url = "http://192.168.1.34/kinora_php/buscar_cines.php"
 
@@ -69,8 +76,31 @@ class Reporte_por_cine : nav_bar(), OnReportePorCineUpdateListener {
 
         })
 
-        val etFechaInicio = findViewById<EditText>(R.id.etFechaInicio)
-        val etFechaFinal = findViewById<EditText>(R.id.etFechaFinal)
+        etFechaInicio = findViewById(R.id.etFechaInicio)
+        etFechaFinal = findViewById(R.id.etFechaFinal)
+
+
+        //_-------------------------------------
+
+        val btnGenerar = findViewById<Button>(R.id.btn_generar_RepPorCine)
+        btnGenerar.setOnClickListener {
+            val inicio = etFechaInicio.text.toString()
+            val fin = etFechaFinal.text.toString()
+
+            if (inicio.isEmpty() || fin.isEmpty()) {
+                Toast.makeText(this, "Debe seleccionar ambas fechas", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val cineId = cineSeleccionado?.id_cine
+            if (cineId != null) {
+                abrirPDFRemoto(inicio, fin, cineId)
+            } else {
+                Toast.makeText(this, "Debe seleccionar un cine primero", Toast.LENGTH_SHORT).show()
+            }
+        }
+        //_-------------------------------------
+
 
         etFechaInicio.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -141,7 +171,22 @@ class Reporte_por_cine : nav_bar(), OnReportePorCineUpdateListener {
 
                 rvCines.adapter = adapter
 
-                Log.d("ReportePorCineActivity", "Cines obtenidos: $listaCines")
+                adapter.setOnItemClickListener { cine ->
+                    cineSeleccionado = cine
+                    Toast.makeText(this, "Cine seleccionado: ${cine.nombre}", Toast.LENGTH_SHORT).show()
+
+                    val inicio = etFechaInicio.text.toString()
+                    val fin = etFechaFinal.text.toString()
+
+                    if (inicio.isNotEmpty() && fin.isNotEmpty()) {
+                        abrirPDFRemoto(inicio, fin, cine.id_cine)
+                    } else {
+                        Toast.makeText(this, "Seleccione fechas primero", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+
+                    Log.d("ReportePorCineActivity", "Cines obtenidos: $listaCines")
             },
             { error ->
                 Log.e("ReportePorCineActivity", "Error de Volley: ", error)
@@ -149,5 +194,14 @@ class Reporte_por_cine : nav_bar(), OnReportePorCineUpdateListener {
         )
 
         Volley.newRequestQueue(this).add(jsonArrayRequest)
+    }
+
+    private fun abrirPDFRemoto(inicio: String, fin: String, cineId: Int) {
+        // Construir URL con parámetros
+        val urlDelReportePorCine = "http://192.168.1.34/kinora_php/cine_admin_tabla.php?inicio=${inicio}&fin=${fin}&cine_id=${cineId}"
+
+        val intent = Intent(this, Reportes_PDF::class.java)
+        intent.putExtra("pdf_url", urlDelReportePorCine)
+        startActivity(intent)
     }
 }

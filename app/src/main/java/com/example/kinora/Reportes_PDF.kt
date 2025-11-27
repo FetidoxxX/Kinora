@@ -4,18 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kinora.databinding.ActivityReporteClientesPdfBinding
+import com.example.kinora.databinding.ActivityReportePdfBinding
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
 
-class Reporte_clientes_PDF : AppCompatActivity() {
+class Reportes_PDF : AppCompatActivity() {
 
-    private lateinit var binding: ActivityReporteClientesPdfBinding
+    private lateinit var binding: ActivityReportePdfBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityReporteClientesPdfBinding.inflate(layoutInflater)
+        binding = ActivityReportePdfBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val urlPDF = intent.getStringExtra("pdf_url")
@@ -50,7 +50,7 @@ class Reporte_clientes_PDF : AppCompatActivity() {
                 val input = conexion.inputStream
 
                 // Archivo temporal local
-                val archivoPDF = File(cacheDir, "reporte_clientes.pdf")
+                val archivoPDF = File(cacheDir, "reporte.pdf")
 
                 // Escribe el archivo (esto cierra el stream al usar 'use')
                 archivoPDF.outputStream().use { output ->
