@@ -173,66 +173,103 @@ switch ($action) {
         break;
 
     case 'actualizar':
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            send_json(['status'=>'error','error'=>'Use POST']);
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        send_json(['status'=>'error','error'=>'Use POST']);
+    }
+    $id = isset($_POST['id']) ? trim($_POST['id']) : '';
+    $titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : '';
+    $sinopsis = isset($_POST['sinopsis']) ? trim($_POST['sinopsis']) : '';
+    $director = isset($_POST['director']) ? trim($_POST['director']) : '';
+    $genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
+    $tipo = isset($_POST['tipo']) ? trim($_POST['tipo']) : '';
+    $clasificacion = isset($_POST['clasificacion']) ? trim($_POST['clasificacion']) : '';
+    $actores = isset($_POST['actores']) ? trim($_POST['actores']) : '';
+
+    if ($id === '' || $titulo === '') {
+        send_json(['status'=>'error','error'=>'Faltan parametros id o titulo']);
+    }
+
+    // procesar poster base64 (opcional)
+    $poster_db_value = null;
+    if (!empty($_POST['poster']) && !empty($_POST['poster_name'])) {
+        $posterBase64 = $_POST['poster'];
+        $posterNameRaw = $_POST['poster_name'];
+        $posterName = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $posterNameRaw);
+        if (!preg_match('/\.(jpg|jpeg|png)$/i', $posterName)) {
+            $posterName .= '.jpg';
         }
-        $id = isset($_POST['id']) ? trim($_POST['id']) : '';
-        $titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : '';
-        $director = isset($_POST['director']) ? trim($_POST['director']) : '';
-        $genero = isset($_POST['genero']) ? trim($_POST['genero']) : '';
-        $tipo = isset($_POST['tipo']) ? trim($_POST['tipo']) : '';
-        $clasificacion = isset($_POST['clasificacion']) ? trim($_POST['clasificacion']) : '';
-        $actores = isset($_POST['actores']) ? trim($_POST['actores']) : '';
-
-        if ($id === '' || $titulo === '') {
-            send_json(['status'=>'error','error'=>'Faltan parametros id o titulo']);
-        }
-
-        $actorList = array_filter(array_map('trim', explode(',', $actores)), function($v){ return $v !== ''; });
-
-        $idDirector = get_id_by($conn, 'director', 'nombre', $director);
-        $idGenero = get_id_by($conn, 'genero', 'genero', $genero);
-        $idTipo = get_id_by($conn, 'tipo', 'tipo', $tipo);
-        $idClasif = get_id_by($conn, 'clasificacion', 'clasificacion', $clasificacion);
-
-        $dirVal = is_null($idDirector) ? "NULL" : intval($idDirector);
-        $genVal = is_null($idGenero) ? "NULL" : intval($idGenero);
-        $tipoVal = is_null($idTipo) ? "NULL" : intval($idTipo);
-        $clasVal = is_null($idClasif) ? "NULL" : intval($idClasif);
-        $tituloSafe = mysqli_real_escape_string($conn, $titulo);
-        $idSafe = mysqli_real_escape_string($conn, $id);
-
-        $sqlUpdate = "UPDATE pelicula SET 
-                        nombre = '$tituloSafe',
-                        director_id_director = $dirVal,
-                        genero_id_genero = $genVal,
-                        tipo_id_tipo = $tipoVal,
-                        clasificacion_id_clasificacion = $clasVal
-                    WHERE id_pelicula = '$idSafe'";
-
-        if (!mysqli_query($conn, $sqlUpdate)) {
-            send_json(['status'=>'error','error'=>mysqli_error($conn)]);
-        }
-
-        if (!mysqli_query($conn, "DELETE FROM pelicula_has_actor WHERE pelicula_id_pelicula = '$idSafe'")) {
-            send_json(['status'=>'error','error'=>mysqli_error($conn)]);
-        }
-
-        foreach ($actorList as $actorName) {
-            $actorSafe = mysqli_real_escape_string($conn, $actorName);
-            $resA = mysqli_query($conn, "SELECT id_actor FROM actor WHERE nombre = '$actorSafe' LIMIT 1");
-            if ($resA && $rowA = mysqli_fetch_assoc($resA)) {
-                $idActor = intval($rowA['id_actor']);
-                if (!mysqli_query($conn, "INSERT INTO pelicula_has_actor (pelicula_id_pelicula, actor_id_actor) VALUES ('$idSafe', $idActor)")) {
-                    send_json(['status'=>'error','error'=>mysqli_error($conn)]);
+        $posterData = base64_decode($posterBase64);
+        if ($posterData !== false) {
+            $uploadDir = __DIR__ . '/uploads/';
+            if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+            $savePath = $uploadDir . $posterName;
+            if (file_exists($savePath)) {
+                $posterName = pathinfo($posterName, PATHINFO_FILENAME) . '_' . time() . '.' . pathinfo($posterName, PATHINFO_EXTENSION);
+                $savePath = $uploadDir . $posterName;
+            }
+            $imgInfo = @getimagesizefromstring($posterData);
+            if ($imgInfo !== false) {
+                if (file_put_contents($savePath, $posterData) !== false) {
+                    $poster_db_value = 'uploads/' . $posterName;
                 }
-            } else {
-                continue;
             }
         }
+    }
 
-        send_json(['status'=>'success']);
-        break;
+    $actorList = array_filter(array_map('trim', explode(',', $actores)), function($v){ return $v !== ''; });
+
+    $idDirector = get_id_by($conn, 'director', 'nombre', $director);
+    $idGenero = get_id_by($conn, 'genero', 'genero', $genero);
+    $idTipo = get_id_by($conn, 'tipo', 'tipo', $tipo);
+    $idClasif = get_id_by($conn, 'clasificacion', 'clasificacion', $clasificacion);
+
+    $dirVal = is_null($idDirector) ? "NULL" : intval($idDirector);
+    $genVal = is_null($idGenero) ? "NULL" : intval($idGenero);
+    $tipoVal = is_null($idTipo) ? "NULL" : intval($idTipo);
+    $clasVal = is_null($idClasif) ? "NULL" : intval($idClasif);
+    $tituloSafe = mysqli_real_escape_string($conn, $titulo);
+    $sinopsisSafe = mysqli_real_escape_string($conn, $sinopsis);
+    $idSafe = mysqli_real_escape_string($conn, $id);
+
+    $sqlUpdate = "UPDATE pelicula SET 
+                    nombre = '$tituloSafe',
+                    sinopsis = '$sinopsisSafe',
+                    director_id_director = $dirVal,
+                    genero_id_genero = $genVal,
+                    tipo_id_tipo = $tipoVal,
+                    clasificacion_id_clasificacion = $clasVal";
+
+    if (!is_null($poster_db_value)) {
+        $posterEsc = mysqli_real_escape_string($conn, $poster_db_value);
+        $sqlUpdate .= ", poster = '$posterEsc'";
+    }
+
+    $sqlUpdate .= " WHERE id_pelicula = '$idSafe'";
+
+    if (!mysqli_query($conn, $sqlUpdate)) {
+        send_json(['status'=>'error','error'=>mysqli_error($conn)]);
+    }
+
+    if (!mysqli_query($conn, "DELETE FROM pelicula_has_actor WHERE pelicula_id_pelicula = '$idSafe'")) {
+        send_json(['status'=>'error','error'=>mysqli_error($conn)]);
+    }
+
+    foreach ($actorList as $actorName) {
+        $actorSafe = mysqli_real_escape_string($conn, $actorName);
+        $resA = mysqli_query($conn, "SELECT id_actor FROM actor WHERE nombre = '$actorSafe' LIMIT 1");
+        if ($resA && $rowA = mysqli_fetch_assoc($resA)) {
+            $idActor = intval($rowA['id_actor']);
+            if (!mysqli_query($conn, "INSERT INTO pelicula_has_actor (pelicula_id_pelicula, actor_id_actor) VALUES ('$idSafe', $idActor)")) {
+                send_json(['status'=>'error','error'=>mysqli_error($conn)]);
+            }
+        } else {
+            continue;
+        }
+    }
+
+    send_json(['status'=>'success']);
+    break;
+
 
     default:
         send_json(['error'=>'Acción no válida']);

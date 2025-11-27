@@ -33,7 +33,8 @@ class cines_admin : nav_bar(), OnCineUpdateListener  {
     private lateinit var btnCrearCine: Button
 
     private lateinit var etBuscar: EditText
-    private val url = "http://10.0.2.2/kinora_php/buscar_cines.php"
+    //private val url = "http://10.0.2.2/kinora_php/buscar_cines.php"
+    private val url = "http://192.168.1.4/Kinora/kinora_php/buscar_cines.php"
     //private val url = "http://192.168.1.4/kinora_php/buscar_cines.php" //michael
     override fun onUpdateSuccess() {
         etBuscar.setText("") // o también etBuscar.text.clear()

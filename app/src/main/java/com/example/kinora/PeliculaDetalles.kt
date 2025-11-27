@@ -6,5 +6,7 @@ data class PeliculaDetalles (
     val genero: String,
     val tipo: String,
     val clasificacion: String,
-    val actores: String
+    val actores: String,
+    val sinopsis: String,
+    val poster: String?
 )

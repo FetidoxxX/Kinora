@@ -13,11 +13,14 @@ if (!isset($_GET['id_pelicula'])) {
 $id_pelicula = mysqli_real_escape_string($conn, $_GET['id_pelicula']);
 
 $sql_pelicula = "SELECT
+                    p.id_pelicula,
                     p.nombre AS nombre,
-                    d.nombre AS director,
-                    g.genero AS genero,
-                    t.tipo AS tipo,
-                    cl.clasificacion AS clasificacion
+                    IFNULL(p.sinopsis, '') AS sinopsis,
+                    IFNULL(p.poster, '') AS poster,
+                    IFNULL(d.nombre, '') AS director,
+                    IFNULL(g.genero, '') AS genero,
+                    IFNULL(t.tipo, '') AS tipo,
+                    IFNULL(cl.clasificacion, '') AS clasificacion
                 FROM
                     pelicula p
                 LEFT JOIN
@@ -29,14 +32,23 @@ $sql_pelicula = "SELECT
                 LEFT JOIN
                     clasificacion cl ON p.clasificacion_id_clasificacion = cl.id_clasificacion
                 WHERE
-                    p.id_pelicula = '$id_pelicula'";
+                    p.id_pelicula = '$id_pelicula'
+                LIMIT 1";
 
 $result_pelicula = mysqli_query($conn, $sql_pelicula);
+if (!$result_pelicula) {
+    echo json_encode(['error' => 'Error en consulta: '. mysqli_error($conn)]);
+    http_response_code(500);
+    mysqli_close($conn);
+    die();
+}
+
 $pelicula_detalles = mysqli_fetch_assoc($result_pelicula);
 
 if (!$pelicula_detalles) {
     echo json_encode(['error' => 'Película no encontrada.']);
     http_response_code(404);
+    mysqli_close($conn);
     die();
 }
 
@@ -47,12 +59,15 @@ $sql_actores = "SELECT
                 JOIN
                     pelicula_has_actor pha ON a.id_actor = pha.actor_id_actor
                 WHERE
-                    pha.pelicula_id_pelicula = '$id_pelicula'";
+                    pha.pelicula_id_pelicula = '$id_pelicula'
+                ORDER BY a.nombre ASC";
 
 $result_actores = mysqli_query($conn, $sql_actores);
 $actores = array();
-while($row = mysqli_fetch_assoc($result_actores)) {
-    $actores[] = $row['nombre'];
+if ($result_actores) {
+    while($row = mysqli_fetch_assoc($result_actores)) {
+        $actores[] = $row['nombre'];
+    }
 }
 
 $respuesta_final = $pelicula_detalles;

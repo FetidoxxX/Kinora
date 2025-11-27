@@ -17,7 +17,8 @@ class Cartelera_Cliente : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var rvPeliculas: RecyclerView
     private lateinit var peliculaAdapter: PeliculaCarteleraAdapter
-    private val URL_CARTELERA = "http://192.168.80.25/Kinora/kinora_php/obtener_cartelera.php"
+    //private val URL_CARTELERA = "http://192.168.80.25/Kinora/kinora_php/obtener_cartelera.php"
+    private val URL_CARTELERA = "http://192.168.1.4/Kinora/kinora_php/obtener_cartelera.php"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
