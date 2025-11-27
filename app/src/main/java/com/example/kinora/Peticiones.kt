@@ -25,7 +25,7 @@ class Peticiones : nav_bar(), OnPeticionUpdateListener {
     private lateinit var rvPeticiones: RecyclerView
     private lateinit var etBuscarPeticiones: EditText
 
-    private val url = "http://192.168.2.103/kinora_php/buscar_peticiones.php"
+    private val url = "http://192.168.1.34/kinora_php/buscar_peticiones.php"
 
     override fun onUpdateSuccess() {
         etBuscarPeticiones.setText("")
