@@ -17,16 +17,10 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".reporte_cine_enc"
-            android:exported="false" />
-        <activity
             android:name=".crear_peticion_enc"
             android:exported="false" />
         <activity
             android:name=".peticiones_enc"
-            android:exported="false" />
-        <activity
-            android:name=".detalles_enc_peliculas"
             android:exported="false" />
         <activity
             android:name=".peliculas_encargado"

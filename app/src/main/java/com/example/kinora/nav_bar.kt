@@ -97,7 +97,7 @@ open class nav_bar : BaseActivity() {
         }
         btnRegistroCines_enc?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            startActivity(Intent(this, reporte_cine_enc::class.java))
+            startActivity(Intent(this, Reporte_cine::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
