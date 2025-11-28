@@ -1,11 +1,15 @@
 package com.example.kinora
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.ImageButton
 
 open class nav_bar : BaseActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     protected fun configurarNavBar() {
         val btnPeliculas = findViewById<ImageButton>(R.id.btnPeliculas)
         val btnCines = findViewById<ImageButton>(R.id.btnCines)
@@ -14,12 +18,21 @@ open class nav_bar : BaseActivity() {
         val btnPeticiones = findViewById<ImageButton>(R.id.btnPeticiones)
         val btnReporteClientes =  findViewById<ImageButton>(R.id.btnRegistroClientes)
         val btnReporteCines =  findViewById<ImageButton>(R.id.btnRegistroCines)
-
+        val rolUsuario = administradorSesiones.obtenerIdRol()
         val vistaDesNav: View? = findViewById<View>(R.id.despliegue_nav_plus)
+        val vistaDesNavEnc: View? = findViewById<View>(R.id.despliegue_nav_plus_enc)
+        val btnPeticiones_enc = findViewById<ImageButton?>(R.id.btnPeticiones_enc)
+        val btnUsuario_enc = findViewById<ImageButton?>(R.id.btnUsuario_enc)
+        val btnRegistroCines_enc = findViewById<ImageButton?>(R.id.btnRegistroCines_enc)
 
         btnPeliculas?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            startActivity(Intent(this, Peliculas::class.java))
+            val destinoClase = when (rolUsuario) {
+                Roles.ENCARGADO -> peliculas_encargado::class.java
+                Roles.ADMINISTRADOR -> Peliculas::class.java
+                else -> Cartelera_Cliente::class.java
+            }
+            startActivity(Intent(this, destinoClase))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
@@ -29,18 +42,25 @@ open class nav_bar : BaseActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
-        btnPeliculas?.setOnClickListener {
-            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            startActivity(Intent(this, Peliculas::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
-
         btnPlus?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            if(vistaDesNav?.visibility == View.VISIBLE){
+            if (rolUsuario == Roles.ENCARGADO) {
+                if (vistaDesNavEnc?.visibility == View.VISIBLE) {
+                    vistaDesNavEnc.visibility = View.GONE
+                } else {
+                    vistaDesNav?.visibility = View.GONE
+                    vistaDesNavEnc?.visibility = View.VISIBLE
+                }
+            } else if (rolUsuario == Roles.ADMINISTRADOR) {
+                if (vistaDesNav?.visibility == View.VISIBLE) {
+                    vistaDesNav.visibility = View.GONE
+                } else {
+                    vistaDesNavEnc?.visibility = View.GONE
+                    vistaDesNav?.visibility = View.VISIBLE
+                }
+            } else {
                 vistaDesNav?.visibility = View.GONE
-            }else{
-                vistaDesNav?.visibility = View.VISIBLE
+                vistaDesNavEnc?.visibility = View.GONE
             }
         }
 
@@ -55,14 +75,27 @@ open class nav_bar : BaseActivity() {
             startActivity(Intent(this, Peticiones::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
-
         btnReporteClientes?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             startActivity(Intent(this, Reporte_clientes::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
-
         btnReporteCines?.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            startActivity(Intent(this, Reporte_por_cine::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+        btnPeticiones_enc?.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            startActivity(Intent(this, Peticiones::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+        btnUsuario_enc?.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            startActivity(Intent(this, Usuario::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+        btnRegistroCines_enc?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             startActivity(Intent(this, Reporte_por_cine::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

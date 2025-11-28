@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             val destinoActivity = when (rolGuardado) {
                 Roles.ADMINISTRADOR -> Peliculas::class.java
-                Roles.ENCARGADO -> Home::class.java
+                Roles.ENCARGADO -> peliculas_encargado::class.java
                 Roles.CLIENTE -> Cartelera_Cliente::class.java
                 else -> MainActivity::class.java
             }

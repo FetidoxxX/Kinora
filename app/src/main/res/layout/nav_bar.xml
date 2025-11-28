@@ -12,6 +12,12 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <include
+        android:id="@+id/despliegue_nav_plus_enc"
+        layout="@layout/despliegue_nav_plus_enc"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <!-- Fondo completo de la barra -->
     <ImageView

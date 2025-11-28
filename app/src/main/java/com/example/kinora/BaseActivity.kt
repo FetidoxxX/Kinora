@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity : AppCompatActivity() {
 
-    private lateinit var adminSesiones: AdministradorSesiones
+    protected val administradorSesiones: AdministradorSesiones by lazy {
+        AdministradorSesiones(this)
+    }
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var runnable: Runnable
 
@@ -15,10 +17,9 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adminSesiones = AdministradorSesiones(this)
 
         runnable = Runnable {
-            adminSesiones.cerrarSesion()
+            administradorSesiones.cerrarSesion()
         }
 
         // Iniciar el temporizador

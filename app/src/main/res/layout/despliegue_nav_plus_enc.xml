@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:id="@+id/despliegue_nav_plus_enc">
+
+    <ImageView
+        android:id="@+id/imageView3_enc"
+        android:layout_width="match_parent"
+        android:layout_height="237dp"
+        android:background="@drawable/fondo_nav_expand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnPeticiones_enc"
+        android:layout_width="69dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3_enc"
+        app:srcCompat="@drawable/list" />
+
+    <ImageButton
+        android:id="@+id/btnUsuario_enc"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="48dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3_enc"
+        app:srcCompat="@drawable/user" />
+
+    <ImageButton
+        android:id="@+id/btnRegistroCines_enc"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="48dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3_enc"
+        app:srcCompat="@drawable/pdf_file"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView6_enc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Usuario"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnUsuario_enc"
+        app:layout_constraintStart_toStartOf="@+id/btnUsuario_enc"
+        app:layout_constraintTop_toBottomOf="@+id/btnUsuario_enc" />
+
+    <TextView
+        android:id="@+id/textView7_enc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peticiones"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnPeticiones_enc"
+        app:layout_constraintStart_toStartOf="@+id/btnPeticiones_enc"
+        app:layout_constraintTop_toBottomOf="@+id/btnPeticiones_enc" />
+
+    <TextView
+        android:id="@+id/textView9_enc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reporte\nDel Cine"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegistroCines_enc"
+        app:layout_constraintStart_toStartOf="@+id/btnRegistroCines_enc"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistroCines_enc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

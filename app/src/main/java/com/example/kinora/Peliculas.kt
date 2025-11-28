@@ -20,7 +20,7 @@ import android.view.animation.AnimationUtils
 import android.view.animation.Animation
 class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
-    private lateinit var adminSesiones: AdministradorSesiones
+
     private lateinit var rvPeliculas: RecyclerView
 
     //private val url: String = "http://192.168.80.25/kinora_php/obtener_peliculas.php" // breyner
@@ -34,8 +34,7 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        adminSesiones = AdministradorSesiones(this)
-        adminSesiones.verificarAcceso(this, listOf( Roles.ADMINISTRADOR, Roles.ENCARGADO))
+        administradorSesiones.verificarAcceso(this, listOf(Roles.ADMINISTRADOR))
 
         setContentView(R.layout.activity_peliculas)
         configurarNavBar()
@@ -148,8 +147,4 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
         Volley.newRequestQueue(this).add(jsonArrayRequest)
     }
-
-
-
-
 }
