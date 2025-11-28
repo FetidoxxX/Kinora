@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 require_once 'conexion.php';
 $conn = Conectar();
 
-$sql = "SELECT id_pelicula, nombre FROM pelicula";
+$sql = "SELECT id_pelicula, nombre FROM pelicula WHERE id_estado_pelicula = 1";
 
 $result = mysqli_query($conn, $sql);
 

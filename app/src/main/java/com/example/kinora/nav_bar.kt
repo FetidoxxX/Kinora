@@ -23,7 +23,7 @@ open class nav_bar : BaseActivity() {
         val vistaDesNavEnc: View? = findViewById<View>(R.id.despliegue_nav_plus_enc)
         val btnPeticiones_enc = findViewById<ImageButton?>(R.id.btnPeticiones_enc)
         val btnUsuario_enc = findViewById<ImageButton?>(R.id.btnUsuario_enc)
-        val btnRegistroCines_enc = findViewById<ImageButton?>(R.id.btnRegistroCines_enc)
+        val btnRegistroCines_enc = findViewById<ImageButton?>(R.id.btnReporteCines_enc)
 
         btnPeliculas?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -87,7 +87,7 @@ open class nav_bar : BaseActivity() {
         }
         btnPeticiones_enc?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            startActivity(Intent(this, Peticiones::class.java))
+            startActivity(Intent(this, peticiones_enc::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
         btnUsuario_enc?.setOnClickListener {
@@ -97,7 +97,7 @@ open class nav_bar : BaseActivity() {
         }
         btnRegistroCines_enc?.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            startActivity(Intent(this, Reporte_por_cine::class.java))
+            startActivity(Intent(this, reporte_cine_enc::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }

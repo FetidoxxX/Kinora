@@ -33,7 +33,7 @@
         android:id="@+id/btnUsuario_enc"
         android:layout_width="45dp"
         android:layout_height="46dp"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="48dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/user" />
 
     <ImageButton
-        android:id="@+id/btnRegistroCines_enc"
+        android:id="@+id/btnReporteCines_enc"
         android:layout_width="45dp"
         android:layout_height="46dp"
         android:layout_marginStart="292dp"
@@ -82,8 +82,8 @@
         android:text="Reporte\nDel Cine"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/btnRegistroCines_enc"
-        app:layout_constraintStart_toStartOf="@+id/btnRegistroCines_enc"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistroCines_enc" />
+        app:layout_constraintEnd_toEndOf="@+id/btnReporteCines_enc"
+        app:layout_constraintStart_toStartOf="@+id/btnReporteCines_enc"
+        app:layout_constraintTop_toBottomOf="@+id/btnReporteCines_enc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ require_once 'conexion.php';
 $conn = Conectar();
 
 if (!isset($_GET['id_u'])) {
-    http_response_code(400); // Bad Request
+    http_response_code(400);
     echo json_encode(array("error" => "ID de usuario no proporcionado."));
     mysqli_close($conn);
     exit;

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".crear_peticion_enc"
+android:background="@drawable/fondo">
+
+    <TextView
+        android:id="@+id/txt_Peliculas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="184dp"
+        android:text="Peticion"
+        android:textColor="#FDFDFD"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/btnCreacion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+    android:id="@+id/txt_info"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="120dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="121dp"
+    android:text="Información de la pelicula"
+    android:textColor="#FDFDFD"
+    android:textSize="15sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txt_Peliculas" />
+
+<ImageButton
+    android:id="@+id/imageButton"
+    android:layout_width="49dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="35dp"
+    android:layout_marginEnd="16dp"
+    android:background="@android:color/transparent"
+    android:scaleType="fitCenter"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/logo" />
+
+    <LinearLayout
+        android:id="@+id/btnPeticion"
+        android:layout_width="145dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/btnnegroblanco"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="Enviar Peticion"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+<ScrollView
+    android:id="@+id/scroll"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="0dp"
+    android:layout_marginRight="30dp"
+    app:layout_constraintBottom_toTopOf="@+id/btnPeticion"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txt_info">
+
+    <LinearLayout
+        android:id="@+id/LayoutPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Titulo"
+            android:textColor="#FDFDFD"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/edtTitulo"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Buscar Titulo..."
+            android:inputType="text"
+            android:textColor="#FDFDFD"
+            android:textColorHint="#A2A2A2"
+            android:textSize="13sp" />
+
+
+
+        <TextView
+            android:id="@+id/txt_sinopsis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Sinopsis"
+            android:textColor="#FDFDFD"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/edtSinopsis"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Escribir sinopsis"
+            android:inputType="text"
+            android:textColor="#FDFDFD"
+            android:textColorHint="#A2A2A2"
+            android:textSize="13sp" />
+
+
+
+
+        <TextView
+            android:id="@+id/txt_Director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Director"
+            android:textColor="#FDFDFD"
+            android:textSize="13sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edtDirector"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:hint="Buscar Director..."
+            android:inputType="text"
+            android:textColorHint="#A2A2A2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txt_Genero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Genero"
+            android:textColor="#FDFDFD"
+            android:textSize="13sp" />
+
+        <Spinner
+            android:id="@+id/edtGenero"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/txt_Tipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Tipo"
+            android:textColor="#FDFDFD"
+            android:textSize="13sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edtTipo"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:hint="Buscar Tipo..."
+            android:inputType="text"
+            android:textColorHint="#A2A2A2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txt_Clasificacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Clasificación"
+            android:textColor="#FDFDFD"
+            android:textSize="13sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/edtClasificacion"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:hint="Buscar Clasificación..."
+            android:inputType="text"
+            android:textColorHint="#A2A2A2"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_ActoresTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="16dp"
+                android:text="Actores"
+                android:textColor="#FDFDFD"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:id="@+id/btnAgregar"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btnnegroblanco"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Añadir"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/actorsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+<include
+    android:id="@+id/navBarInclude"
+    layout="@layout/nav_bar"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+<Button
+    android:id="@+id/btnPortada"
+    android:layout_width="88dp"
+    android:layout_height="40dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="120dp"
+    android:text="Portada"
+    android:textSize="8sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
