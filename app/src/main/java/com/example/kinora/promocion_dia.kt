@@ -24,9 +24,15 @@ class promocion_dia : nav_bar() {
     private val crearCosas = object : crear_Cosas {} // Interface implementation
     private val baseUrl = "http://192.168.1.6/kinora_php/" // Adjust if needed
 
+    private lateinit var adminSesiones: AdministradorSesiones
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        adminSesiones = AdministradorSesiones(this)
+        adminSesiones.verificarAcceso(this, listOf(Roles.ADMINISTRADOR))
+
         setContentView(R.layout.activity_promocion_dia)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
