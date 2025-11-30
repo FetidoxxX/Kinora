@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".promocion_dia"
+            android:exported="false" />
+        <activity
             android:name=".crear_peticion_enc"
             android:exported="false" />
         <activity

@@ -424,4 +424,72 @@ interface crear_Cosas {
         }
         queue.add(request)
     }
+       fun crearPromocion(context: Context, nombre: String, descuento: String, fecha: String, baseUrl: String, onSuccess: () -> Unit) {
+        val url = "${baseUrl}crear_promocion.php"
+        val queue = Volley.newRequestQueue(context)
+
+        val request = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                try {
+                    val json = org.json.JSONObject(response)
+                    if (json.optString("status") == "success") {
+                        Toast.makeText(context, "Promoción creada correctamente", Toast.LENGTH_SHORT).show()
+                        onSuccess()
+                    } else {
+                        Toast.makeText(context, "Error: ${json.optString("message")}", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error parseando respuesta", Toast.LENGTH_LONG).show()
+                }
+            },
+            { error ->
+                Toast.makeText(context, "Error de red: ${error.message}", Toast.LENGTH_LONG).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val p = HashMap<String, String>()
+                p["nombre"] = nombre
+                p["descuento"] = descuento
+                p["fecha"] = fecha
+                return p
+            }
+        }
+        queue.add(request)
+    }
+
+    fun actualizarPromocion(context: Context, id: String, nombre: String, descuento: String, fecha: String, baseUrl: String, onSuccess: () -> Unit) {
+        val url = "${baseUrl}actualizar_promocion.php"
+        val queue = Volley.newRequestQueue(context)
+
+        val request = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                try {
+                    val json = org.json.JSONObject(response)
+                    if (json.optString("status") == "success") {
+                        Toast.makeText(context, "Promoción actualizada correctamente", Toast.LENGTH_SHORT).show()
+                        onSuccess()
+                    } else {
+                        Toast.makeText(context, "Error: ${json.optString("message")}", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error parseando respuesta", Toast.LENGTH_LONG).show()
+                }
+            },
+            { error ->
+                Toast.makeText(context, "Error de red: ${error.message}", Toast.LENGTH_LONG).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val p = HashMap<String, String>()
+                p["id_dia"] = id
+                p["nombre"] = nombre
+                p["descuento"] = descuento
+                p["fecha"] = fecha
+                return p
+            }
+        }
+        queue.add(request)
+    }
 }

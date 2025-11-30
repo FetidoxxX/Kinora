@@ -1,4 +1,4 @@
-// Archivo: DataRepository.kt (o TipoApiService.kt)
+package com.example.kinora
 
 import android.content.Context
 import com.android.volley.Request
@@ -8,6 +8,8 @@ import com.example.kinora.Actor
 import com.example.kinora.ActorCallback
 import com.example.kinora.ClasiCallback
 import com.example.kinora.Clasificacion
+import com.example.kinora.Dia
+import com.example.kinora.DiaCallback
 import com.example.kinora.Director
 import com.example.kinora.DirectorCallback
 import com.example.kinora.Genero
@@ -164,4 +166,35 @@ class CargarCosas(private val context: Context) {
 
         Volley.newRequestQueue(context).add(jsonArrayRequest)
     }
+    fun cargarPromociones(callback: DiaCallback) {
+        val urlPromociones = "http://192.168.1.6/kinora_php/obtener_promociones.php"
+
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET, urlPromociones, null,
+            { response ->
+                try {
+                    val listaPromociones = mutableListOf<Dia>()
+                    for (i in 0 until response.length()) {
+                        val jsonObject = response.getJSONObject(i)
+
+                        val id = jsonObject.getString("id_dia")
+                        val nombre = jsonObject.getString("nombre")
+                        val descuento = jsonObject.getString("descuento")
+                        val fecha = jsonObject.getString("fecha")
+
+                        listaPromociones.add(Dia(id, nombre, descuento, fecha))
+                    }
+                    callback.onSuccess(listaPromociones)
+                } catch (e: JSONException) {
+                    callback.onError("Error al procesar la respuesta del servidor.")
+                }
+            },
+            { error ->
+                callback.onError("Error de conexión o de red: ${error.message}")
+            }
+        )
+
+        Volley.newRequestQueue(context).add(jsonArrayRequest)
+    }
+
 }

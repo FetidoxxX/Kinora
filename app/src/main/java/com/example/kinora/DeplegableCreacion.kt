@@ -1,6 +1,6 @@
 package com.example.kinora
 
-import CargarCosas
+import com.example.kinora.CargarCosas
 import android.app.DownloadManager
 import android.content.Intent
 import android.util.Log
