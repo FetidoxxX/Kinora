@@ -76,4 +76,80 @@ interface crear_cosas_admin {
         }
         queue.add(request)
     }
+    fun crearFuncion(context: Context, idPelicula: String, idSala: String, precioBase: String, fechaHora: String, idDia: String?, baseUrl: String, onSuccess: () -> Unit) {
+        val url = "${baseUrl}crear_funcion.php"
+        val queue = Volley.newRequestQueue(context)
+
+        val request = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                try {
+                    val json = org.json.JSONObject(response)
+                    if (json.optString("status") == "success") {
+                        Toast.makeText(context, json.optString("message"), Toast.LENGTH_SHORT).show()
+                        onSuccess()
+                    } else {
+                        Toast.makeText(context, "Error: ${json.optString("message")}", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error parseando respuesta: $response", Toast.LENGTH_LONG).show()
+                }
+            },
+            { error ->
+                Toast.makeText(context, "Error de red: ${error.message}", Toast.LENGTH_LONG).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val p = HashMap<String, String>()
+                p["id_pelicula"] = idPelicula
+                p["id_sala"] = idSala
+                p["precio_base"] = precioBase
+                p["fecha_hora"] = fechaHora
+                if (idDia != null) {
+                    p["id_dia"] = idDia
+                }
+                return p
+            }
+        }
+        queue.add(request)
+    }
+
+    fun actualizarFuncion(context: Context, idFuncion: String, idPelicula: String, idSala: String, precioBase: String, fechaHora: String, idDia: String?, baseUrl: String, onSuccess: () -> Unit) {
+        val url = "${baseUrl}actualizar_funcion.php"
+        val queue = Volley.newRequestQueue(context)
+
+        val request = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                try {
+                    val json = org.json.JSONObject(response)
+                    if (json.optString("status") == "success") {
+                        Toast.makeText(context, "Función actualizada correctamente", Toast.LENGTH_SHORT).show()
+                        onSuccess()
+                    } else {
+                        Toast.makeText(context, "Error: ${json.optString("message")}", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error parseando respuesta", Toast.LENGTH_LONG).show()
+                }
+            },
+            { error ->
+                Toast.makeText(context, "Error de red: ${error.message}", Toast.LENGTH_LONG).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val p = HashMap<String, String>()
+                p["id_funcion"] = idFuncion
+                p["id_pelicula"] = idPelicula
+                p["id_sala"] = idSala
+                p["precio_base"] = precioBase
+                p["fecha_hora"] = fechaHora
+                if (idDia != null) {
+                    p["id_dia"] = idDia
+                }
+                return p
+            }
+        }
+        queue.add(request)
+    }
 }

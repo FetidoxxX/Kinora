@@ -81,6 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guardar"
+        android:backgroundTint="#6C5CFF"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:padding="12dp"
         app:cornerRadius="12dp"/>

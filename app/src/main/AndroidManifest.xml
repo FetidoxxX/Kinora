@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Kinora"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".GestionarFunciones"
+            android:exported="false" />
+        <activity
             android:name=".GestionarSalas"
             android:exported="false" />
         <activity

@@ -6,13 +6,13 @@
     android:background="@drawable/fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GestionarSalas">
+    tools:context=".GestionarFunciones">
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imageButtonLogo"
         android:layout_width="49dp"
         android:layout_height="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="18dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
@@ -21,11 +21,11 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/tvTituloSalas"
+        android:id="@+id/tvTituloFunciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Gestionar Salas"
+        android:layout_marginTop="70dp"
+        android:text="Gestionar Funciones"
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -34,19 +34,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSalas"
+        android:id="@+id/rvFunciones"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toTopOf="@+id/navBarInclude"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTituloSalas"
-        app:layout_constraintVertical_bias="0.008" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloFunciones"
+        app:layout_constraintVertical_bias="0.048" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAgregarSala"
+        android:id="@+id/fabAgregarFuncion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
