@@ -13,6 +13,7 @@ cardview = "1.0.0"
 recyclerview = "1.4.0"
 volley = "1.2.1"
 toolsCore = "1.0.0-alpha13"
+composeMaterial = "1.5.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +28,7 @@ androidx-cardview = { group = "androidx.cardview", name = "cardview", version.re
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
+androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -91,7 +91,6 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
         val vistaCreacion = findViewById<View>(R.id.includeCreacion)
         val vistaFiltros = findViewById<View>(R.id.filtros)
         val btnFiltros = findViewById<LinearLayout>(R.id.btnFiltros)
-        val btnFondoFiltros = findViewById<ImageView>(R.id.btnfondoOscurofiltros)
 
         btnCreacion?.setOnClickListener {
             vistaCreacion.visibility = View.VISIBLE
@@ -104,9 +103,6 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
             slideIn.setAnimationListener(null)
         }
 
-        btnFondoFiltros?.setOnClickListener {
-            vistaFiltros.visibility = View.GONE
-        }
 
         cargarPeliculas()
     }

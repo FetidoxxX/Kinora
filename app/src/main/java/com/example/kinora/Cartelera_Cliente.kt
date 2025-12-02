@@ -2,15 +2,15 @@ package com.example.kinora
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
+import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import java.net.URLEncoder
 import kotlin.jvm.java
 
 class Cartelera_Cliente : AppCompatActivity(), OnItemClickListener {
@@ -27,13 +27,42 @@ class Cartelera_Cliente : AppCompatActivity(), OnItemClickListener {
         rvPeliculas = findViewById(R.id.rvPeliculas)
         rvPeliculas.layoutManager = GridLayoutManager(this, 3)
 
-        cargarPeliculasEnCartelera()
+        val btnFiltros = findViewById<LinearLayout>(R.id.btnFiltros)
+
+        btnFiltros.setOnClickListener {
+
+            val bottomSheet = filtros()
+            bottomSheet.show(supportFragmentManager, "filtros")
+        }
+
+        supportFragmentManager.setFragmentResultListener("filtros_aplicados", this) { _, bundle ->
+            val clas = bundle.getString("clasificaciones", "")
+            val gen = bundle.getString("generos", "")
+            val tipo = bundle.getString("tipos", "")
+
+            Log.d("CARTELERA_CLIENTEe", "Filtros recibidos -> clas: '$clas' gen: '$gen' tipo: '$tipo'")
+            Toast.makeText(this, "Aplicando filtros...", Toast.LENGTH_SHORT).show()
+
+            cargarPeliculasEnCartelera(clas ?: "", gen ?: "", tipo ?: "")
+        }
+
+        cargarPeliculasEnCartelera("", "", "")
     }
 
-    private fun cargarPeliculasEnCartelera() {
+    private fun cargarPeliculasEnCartelera(clasificacionesCsv: String = "", generosCsv: String = "", tiposCsv: String = "") {
+        val base = "http://192.168.1.4/Kinora/kinora_php/obtener_cartelera.php"
+        val params = mutableListOf<String>()
+        if (clasificacionesCsv.isNotEmpty()) params.add("clasificaciones=${URLEncoder.encode(clasificacionesCsv, "UTF-8")}")
+        if (generosCsv.isNotEmpty()) params.add("generos=${URLEncoder.encode(generosCsv, "UTF-8")}")
+        if (tiposCsv.isNotEmpty()) params.add("tipos=${URLEncoder.encode(tiposCsv, "UTF-8")}")
+
+        val urlFinal = if (params.isEmpty()) base else "$base?${params.joinToString("&")}"
+
+        android.util.Log.d("CARTELERA_CLIENTEe", "URL final -> $urlFinal")
+
         val stringRequest = object : com.android.volley.toolbox.StringRequest(
             Request.Method.GET,
-            URL_CARTELERA,
+            urlFinal,
             com.android.volley.Response.Listener<String> { response ->
                 try {
                     val listaPeliculas = parsearRespuestaPeliculas(response)

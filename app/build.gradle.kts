@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.kinora"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -61,6 +61,9 @@ dependencies {
 
     // Dependencia de Glide (librería para carga de imágenes)
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("com.google.android.material:material:1.12.0")
+    implementation(libs.androidx.compose.material)
 
     // Testing
     testImplementation(libs.junit)

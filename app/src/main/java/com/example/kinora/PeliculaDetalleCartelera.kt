@@ -32,7 +32,7 @@ class PeliculaDetalleCartelera : AppCompatActivity() {
     private lateinit var tvFecha2: TextView
     private lateinit var tvFecha3: TextView
     private lateinit var tvFecha4: TextView
-    private val URL_DETALLE = "http://192.168.80.25/Kinora/kinora_php/obtener_detalle_pelicula_cartelera.php?id_pelicula="
+    private val URL_DETALLE = "http://192.168.1.4/Kinora/kinora_php/obtener_detalle_pelicula_cartelera.php?id_pelicula="
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,7 +131,7 @@ class PeliculaDetalleCartelera : AppCompatActivity() {
     }
 
     private lateinit var rvFunciones: RecyclerView
-    private val URL_FUNCIONES = "http://192.168.80.25/Kinora/kinora_php/obtener_funciones_pelicula.php?id_pelicula="
+    private val URL_FUNCIONES = "http://192.168.1.4/Kinora/kinora_php/obtener_funciones_pelicula.php?id_pelicula="
     private var peliculaId: String? = null
 
     private fun setupFuncionesRecyclerView() {
