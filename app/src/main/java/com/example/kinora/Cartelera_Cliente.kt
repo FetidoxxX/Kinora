@@ -13,7 +13,7 @@ import com.android.volley.toolbox.Volley
 import java.net.URLEncoder
 import kotlin.jvm.java
 
-class Cartelera_Cliente : AppCompatActivity(), OnItemClickListener {
+class Cartelera_Cliente : nav_bar_cliente(), OnItemClickListener {
 
     private lateinit var rvPeliculas: RecyclerView
     private lateinit var peliculaAdapter: PeliculaCarteleraAdapter
@@ -23,6 +23,7 @@ class Cartelera_Cliente : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cartelera_cliente)
+        configurarNavBar()
 
         rvPeliculas = findViewById(R.id.rvPeliculas)
         rvPeliculas.layoutManager = GridLayoutManager(this, 3)

@@ -19,7 +19,7 @@ import java.util.Calendar
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class PeliculaDetalleCartelera : AppCompatActivity() {
+class PeliculaDetalleCartelera : nav_bar_cliente() {
 
     private lateinit var ivPoster: ImageView
     private lateinit var tvDirector: TextView
@@ -37,6 +37,7 @@ class PeliculaDetalleCartelera : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pelicula_detalle_cartelera)
+        configurarNavBar()
 
         ivPoster = findViewById(R.id.imageView4)
         tvDirector = findViewById(R.id.DirectorTxT)
