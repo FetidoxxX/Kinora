@@ -18,7 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <ImageButton
         android:id="@+id/btnPeticiones"
         android:layout_width="69dp"
@@ -28,7 +27,7 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.362"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:srcCompat="@drawable/list" />
@@ -37,8 +36,8 @@
         android:id="@+id/btnUsuario"
         android:layout_width="45dp"
         android:layout_height="46dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +48,7 @@
         android:id="@+id/btnRegistroClientes"
         android:layout_width="45dp"
         android:layout_height="46dp"
-        android:layout_marginStart="208dp"
+        android:layout_marginStart="252dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
@@ -62,7 +61,7 @@
         android:id="@+id/btnRegistroCines"
         android:layout_width="45dp"
         android:layout_height="46dp"
-        android:layout_marginStart="292dp"
+        android:layout_marginStart="316dp"
         android:layout_marginTop="48dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
@@ -116,5 +115,30 @@
         app:layout_constraintStart_toStartOf="@+id/btnRegistroCines"
         app:layout_constraintTop_toBottomOf="@+id/btnRegistroCines" />
 
+
+    <ImageButton
+        android:id="@+id/btnPromocionDia"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/ic_prom_dia"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textViewPromocionDia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Promoción\nDía"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnPromocionDia"
+        app:layout_constraintStart_toStartOf="@+id/btnPromocionDia"
+        app:layout_constraintTop_toBottomOf="@+id/btnPromocionDia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

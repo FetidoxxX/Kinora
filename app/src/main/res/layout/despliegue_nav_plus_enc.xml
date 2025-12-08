@@ -13,8 +13,9 @@
         android:layout_height="237dp"
         android:background="@drawable/fondo_nav_expand"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btnPeticiones_enc"
@@ -25,6 +26,7 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3_enc"
         app:srcCompat="@drawable/list" />
@@ -33,8 +35,8 @@
         android:id="@+id/btnUsuario_enc"
         android:layout_width="45dp"
         android:layout_height="46dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +47,8 @@
         android:id="@+id/btnReporteCines_enc"
         android:layout_width="45dp"
         android:layout_height="46dp"
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="52dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,5 +87,55 @@
         app:layout_constraintEnd_toEndOf="@+id/btnReporteCines_enc"
         app:layout_constraintStart_toStartOf="@+id/btnReporteCines_enc"
         app:layout_constraintTop_toBottomOf="@+id/btnReporteCines_enc" />
+
+    <ImageButton
+        android:id="@+id/btnGestionarSalas"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3_enc"
+        app:srcCompat="@drawable/ic_ges_sala"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textViewGestionarSalas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Gestionar\nSalas"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnGestionarSalas"
+        app:layout_constraintStart_toStartOf="@+id/btnGestionarSalas"
+        app:layout_constraintTop_toBottomOf="@+id/btnGestionarSalas" />
+
+    <ImageButton
+        android:id="@+id/btnGestionarFunciones"
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3_enc"
+        app:srcCompat="@drawable/ic_fes_funcion"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textViewGestionarFunciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Gestionar\nFunciones"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnGestionarFunciones"
+        app:layout_constraintStart_toStartOf="@+id/btnGestionarFunciones"
+        app:layout_constraintTop_toBottomOf="@+id/btnGestionarFunciones" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
