@@ -12,6 +12,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
+import androidx.activity.enableEdgeToEdge
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
 class GestionarSalas : nav_bar(), SalaCallback {
 
     private lateinit var rvSalas: RecyclerView
@@ -21,7 +25,13 @@ class GestionarSalas : nav_bar(), SalaCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_gestionar_salas)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         configurarNavBar()
 
@@ -82,7 +92,7 @@ class GestionarSalas : nav_bar(), SalaCallback {
             val numero = edtNumero.text.toString()
             val filas = edtFilas.text.toString()
             val columnas = edtColumnas.text.toString()
-            val baseUrl = "http://192.168.1.6/kinora_php/"
+            val baseUrl = "http://192.168.1.4/kinora_php/"
 
             if (numero.isEmpty()) {
                 edtNumero.error = "Campo requerido"

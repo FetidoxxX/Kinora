@@ -209,12 +209,6 @@ class GestionarFunciones : nav_bar() {
 
         // Lógica de Promoción
         fun verificarPromocion(fecha: String) {
-            // fecha format: YYYY-MM-DD
-            // Assuming 'fecha' in Dia table matches YYYY-MM-DD or is a day name.
-            // If it's a day name (Lunes, etc.), we need to convert date to day name.
-            // If it's a specific date, we compare directly.
-            // Based on "Promocion del Dia", it's likely specific dates or day names.
-            // Let's assume exact date match first as per "si la fecha del descuento... concuerda"
             
             val promocion = listaPromociones.find { it.fecha == fecha }
             if (promocion != null) {
@@ -315,7 +309,7 @@ class GestionarFunciones : nav_bar() {
 
             val fechaHora = "$fecha $selectedTime24h"
             val idSala = sala.id_sala
-            val baseUrl = "http://192.168.1.6/kinora_php/"
+            val baseUrl = "http://192.168.1.4/kinora_php/"
 
             if (funcion == null) {
                 crearCosasAdmin.crearFuncion(this, selectedPeliculaId!!, idSala, precio, fechaHora, selectedDiaId, baseUrl) {
