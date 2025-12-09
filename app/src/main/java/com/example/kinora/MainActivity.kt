@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
     //private val url: String = "http://172.20.10.3/kinora_php/login.php"
     //private val url: String = "http://192.168.80.25/Kinora/kinora_php/login.php" // breyner
     //private val url: String = "http://192.168.1.6/kinora_php/login.php" //michael
-    private val url: String = "http://192.168.1.4/Kinora/kinora_php/login.php" //Cristhian
-    //private val url: String = "http://10.0.2.2/kinora_php/login.php" //michael
+    //private val url: String = "http://192.168.1.11/Kinora/kinora_php/login.php" //Cristhian
+    private val url: String = "http://10.0.2.2/kinora_php/login.php" //michael
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             val destinoActivity = when (rolGuardado) {
                 Roles.ADMINISTRADOR -> Peliculas::class.java
-                Roles.ENCARGADO -> peliculas_encargado::class.java
+                Roles.ENCARGADO -> Home::class.java
                 Roles.CLIENTE -> Cartelera_Cliente::class.java
                 else -> MainActivity::class.java
             }

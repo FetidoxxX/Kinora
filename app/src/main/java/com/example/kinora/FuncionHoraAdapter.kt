@@ -28,9 +28,9 @@ class FuncionHoraAdapter(private val listaHoras: List<FuncionHora>) :
 
         holder.itemView.setOnClickListener {
             val idFuncionSeleccionada = funcionActual.id_funcion
-            //val intent = Intent(holder.itemView.context, Usuario_seleccion_sillas::class.java)
-            //intent.putExtra("ID_FUNCION_SELECCIONADA", idFuncionSeleccionada)
-            //holder.itemView.context.startActivity(intent)
+            val intent = Intent(holder.itemView.context, Usuario_seleccion_sillas::class.java)
+            intent.putExtra("ID_FUNCION_SELECCIONADA", idFuncionSeleccionada)
+            holder.itemView.context.startActivity(intent)
             Toast.makeText(
                 holder.itemView.context,
                 "Función ID: $idFuncionSeleccionada",

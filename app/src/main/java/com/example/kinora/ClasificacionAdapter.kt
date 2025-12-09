@@ -65,7 +65,9 @@ class ClasificacionAdapter(private val listaClasificaciones: List<Clasificacion>
     }
 
     private fun actualizarClasificacionEnServidor(context: Context, idClasificacion: String, nuevoNombre: String, dialog: android.app.AlertDialog) {
-        val url = "http://192.168.80.25/kinora_php/actualizar_clasificacion.php"
+        //val url = "http://192.168.80.25/kinora_php/actualizar_clasificacion.php"
+        val url = "http://10.0.2.2/kinora_php/actualizar_clasificacion.php"
+
 
         val stringRequest = object : StringRequest(
             Method.POST,

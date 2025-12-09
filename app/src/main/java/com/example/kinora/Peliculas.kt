@@ -25,9 +25,10 @@ class Peliculas : nav_bar(), DeplegableCreacion, crear_Cosas {
 
     //private val url: String = "http://192.168.80.25/kinora_php/obtener_peliculas.php" // breyner
     //private val urlcrear_Cosas: String = "http://192.168.80.25/kinora_php/" // breyner"
-    //private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
-    private val url: String = "http://192.168.1.4/Kinora/kinora_php/obtener_peliculas.php" //Cristhian
-    private val urlcrear_Cosas: String = "http://92.168.1.4/Kinora/kinora_php/" // breyner"
+    private val url: String = "http://10.0.2.2/kinora_php/obtener_peliculas.php" //Emulador
+    //private val url: String = "http://192.168.1.4/Kinora/kinora_php/obtener_peliculas.php" //Cristhian
+    //private val urlcrear_Cosas: String = "http://92.168.1.4/Kinora/kinora_php/" // breyner"
+    private val urlcrear_Cosas: String = "http://10.0.2.2/kinora_php/" // breyner"
 
 
     @RequiresApi(Build.VERSION_CODES.R)

@@ -80,7 +80,9 @@ class PeticionesAdapter(private val listaPeticiones: List<Peticion>) : RecyclerV
             builder.setView(dialogView)
             val dialog = builder.create()
 
-            val url = "http://192.168.2.103/kinora_php/actualizar_estado_pelicula.php"
+            //val url = "http://192.168.2.103/kinora_php/actualizar_estado_pelicula.php"
+            val url = "http://10.0.2.2/kinora_php/actualizar_estado_pelicula.php"
+
 
             btnAceptar.setOnClickListener {
                 val stringRequest = object : StringRequest(

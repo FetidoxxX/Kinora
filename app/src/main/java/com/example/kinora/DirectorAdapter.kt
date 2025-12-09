@@ -74,7 +74,9 @@ class DirectorAdapter(private val listaDirectores: List<Director>) :
 
     private fun actualizarDirectorEnServidor(context: Context, idDirector: String, nuevoNombre: String, nuevoApellido: String, dialog: android.app.AlertDialog) {
 
-        val url = "http://192.168.80.25/kinora_php/actualizar_director.php"
+        //val url = "http://192.168.80.25/kinora_php/actualizar_director.php"
+        val url = "http://10.0.2.2/kinora_php/actualizar_director.php"
+
 
         val stringRequest = object : StringRequest(
             Method.POST,

@@ -66,7 +66,9 @@ class TiposAdapter(private val listaTipos: List<Tipo>) :
 
     private fun actualizarTipoEnServidor(context: Context, idTipo: String, nuevoNombre: String, dialog: android.app.AlertDialog) {
 
-        val url = "http://192.168.80.25/kinora_php/actualizar_tipo.php"
+        //val url = "http://192.168.80.25/kinora_php/actualizar_tipo.php"
+        val url = "http://10.0.2.2/kinora_php/actualizar_tipo.php"
+
 
         val stringRequest = object : StringRequest(
             Method.POST,

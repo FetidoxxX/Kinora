@@ -26,7 +26,8 @@ class Peticiones : nav_bar(), OnPeticionUpdateListener {
     private lateinit var etBuscarPeticiones: EditText
 
     //private val url = "http://192.168.1.34/kinora_php/buscar_peticiones.php"
-    private val url = "http://192.168.1.4/Kinora/kinora_php/buscar_peticiones.php"
+    private val url = "http://10.0.2.2/kinora_php/buscar_peticiones.php"
+
 
     override fun onUpdateSuccess() {
         etBuscarPeticiones.setText("")

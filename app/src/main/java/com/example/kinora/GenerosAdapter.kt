@@ -67,7 +67,9 @@ class GenerosAdapter(private val listaGeneros: List<Genero>) :
     }
 
     private fun actualizarGeneroEnServidor(context: Context, idGenero: String, nuevoNombre: String, dialog: android.app.AlertDialog) {
-        val url = "http://192.168.80.25/kinora_php/actualizar_genero.php"
+        //val url = "http://192.168.80.25/kinora_php/actualizar_genero.php"
+        val url = "http://10.0.2.2/kinora_php/actualizar_genero.php"
+
 
         val stringRequest = object : StringRequest(
             Method.POST,

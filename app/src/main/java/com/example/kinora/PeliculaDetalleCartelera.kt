@@ -19,7 +19,7 @@ import java.util.Calendar
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class PeliculaDetalleCartelera : nav_bar_cliente() {
+class PeliculaDetalleCartelera : AppCompatActivity() {
 
     private lateinit var ivPoster: ImageView
     private lateinit var tvDirector: TextView
@@ -32,12 +32,14 @@ class PeliculaDetalleCartelera : nav_bar_cliente() {
     private lateinit var tvFecha2: TextView
     private lateinit var tvFecha3: TextView
     private lateinit var tvFecha4: TextView
-    private val URL_DETALLE = "http://192.168.1.4/Kinora/kinora_php/obtener_detalle_pelicula_cartelera.php?id_pelicula="
+    //private val URL_DETALLE = "http://192.168.80.25/Kinora/kinora_php/obtener_detalle_pelicula_cartelera.php?id_pelicula="
+    private val URL_DETALLE = "http://10.0.2.2/kinora_php/obtener_detalle_pelicula_cartelera.php?id_pelicula="
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pelicula_detalle_cartelera)
-        configurarNavBar()
 
         ivPoster = findViewById(R.id.imageView4)
         tvDirector = findViewById(R.id.DirectorTxT)
@@ -132,7 +134,10 @@ class PeliculaDetalleCartelera : nav_bar_cliente() {
     }
 
     private lateinit var rvFunciones: RecyclerView
-    private val URL_FUNCIONES = "http://192.168.1.4/Kinora/kinora_php/obtener_funciones_pelicula.php?id_pelicula="
+    //private val URL_FUNCIONES = "http://192.168.80.25/Kinora/kinora_php/obtener_funciones_pelicula.php?id_pelicula="
+    private val URL_FUNCIONES = "http://10.0.2.2/kinora_php/obtener_funciones_pelicula.php?id_pelicula="
+
+
     private var peliculaId: String? = null
 
     private fun setupFuncionesRecyclerView() {

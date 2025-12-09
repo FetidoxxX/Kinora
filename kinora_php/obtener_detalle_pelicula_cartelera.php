@@ -11,7 +11,9 @@ if (!isset($_GET['id_pelicula'])) {
 }
 
 $id_pelicula = mysqli_real_escape_string($conn, $_GET['id_pelicula']);
-$URL_BASE_POSTERS = "http://192.168.1.4/Kinora/kinora_php/";
+//$URL_BASE_POSTERS = "http://192.168.80.25/Kinora/kinora_php/";
+$URL_BASE_POSTERS = "http://10.0.2.2/kinora_php/";
+
 
 $sql = "SELECT
             p.id_pelicula,

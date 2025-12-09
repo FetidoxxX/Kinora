@@ -1,0 +1,18 @@
+<!-- file: res/layout/item_silla.xml -->
+<!-- file: [app/src/main/res/layout/item_silla.xml](file:///C:/Users/bryan/StudioProjects/Kinora/app/src/main/res/layout/item_silla.xml) --> <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="2dp"><com.google.android.material.button.MaterialButton
+    android:id="@+id/btn_silla"
+    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+    android:layout_width="45dp"
+    android:layout_height="50dp"
+    android:checkable="true"
+    android:padding="0dp"
+    android:textSize="12sp"
+    android:textColor="#6C6C98"
+    app:backgroundTint="@color/selector_color_silla_background"
+    app:cornerRadius="8dp"
+    tools:text="F12" /></FrameLayout>

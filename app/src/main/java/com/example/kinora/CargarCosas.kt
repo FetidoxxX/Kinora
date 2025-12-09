@@ -20,7 +20,9 @@ import com.example.kinora.TipoCallback
 
 class CargarCosas(private val context: Context) {
     fun cargarTipos(callback: TipoCallback) {
-        val urlTipos = "http://192.168.80.25/Kinora/kinora_php/obtener_tipos.php"//Breyner
+        //val urlTipos = "http://192.168.80.25/Kinora/kinora_php/obtener_tipos.php"//Breyner
+        val urlTipos = "http://10.0.2.2/Kinora/kinora_php/obtener_tipos.php"//Breyner
+
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, urlTipos, null,
@@ -48,7 +50,10 @@ class CargarCosas(private val context: Context) {
     }
 
     fun cargarGeneros(callback: GeneroCallback) {
-        val urlTipos = "http://192.168.80.25/kinora_php/obtener_generos.php"
+
+        //val urlTipos = "http://192.168.80.25/kinora_php/obtener_generos.php"
+        val urlTipos = "http://10.0.2.2/kinora_php/obtener_generos.php"
+
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, urlTipos, null,
@@ -78,7 +83,9 @@ class CargarCosas(private val context: Context) {
     }
 
     fun cargarClasi(callback: ClasiCallback) {
-        val urlTipos = "http://192.168.80.25/kinora_php/obtener_clasificaciones.php"
+        //val urlTipos = "http://192.168.80.25/kinora_php/obtener_clasificaciones.php"
+        val urlTipos = "http://10.0.2.2/kinora_php/obtener_clasificaciones.php"
+
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, urlTipos, null,
@@ -108,7 +115,9 @@ class CargarCosas(private val context: Context) {
     }
 
     fun cargarActores(callback: ActorCallback) {
-        val urlTipos = "http://192.168.80.25/kinora_php/obtener_actores.php"
+        //val urlTipos = "http://192.168.80.25/kinora_php/obtener_actores.php"
+        val urlTipos = "http://10.0.2.2/kinora_php/obtener_actores.php"
+
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, urlTipos, null,
@@ -138,7 +147,8 @@ class CargarCosas(private val context: Context) {
     }
 
     fun cargarDirectores(callback: DirectorCallback) {
-        val urlTipos = "http://192.168.80.25/kinora_php/obtener_directores.php"
+        //val urlTipos = "http://192.168.80.25/kinora_php/obtener_directores.php"
+        val urlTipos = "http://10.0.2.2/kinora_php/obtener_directores.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, urlTipos, null,
